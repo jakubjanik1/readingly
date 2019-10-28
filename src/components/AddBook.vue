@@ -6,13 +6,18 @@
             ref="input"
             @change="handleFileChange"
         >
-        +
+        <AddIcon class="add-book__icon" :size="32" />
     </div>
 </template>
 
 <script>
+import AddIcon from 'vue-material-design-icons/Plus'
+
 export default {
     name: 'AddBook',
+    components: {
+        AddIcon
+    },
     methods: {
         openFileDialog() {
             this.$refs.input.click()
@@ -32,9 +37,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .add-book {
+    .add-book {    
+        width: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
         &__input {
             display: none;
+        }
+
+        &__icon {
+            color: #647284;
+            height: 32px;
         }
     }
 </style>
