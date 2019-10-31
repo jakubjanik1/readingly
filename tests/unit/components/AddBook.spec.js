@@ -35,7 +35,7 @@ describe('AddBook', () => {
     })
 
     function chooseFile(name, type) {
-        const file = new File([], name, { type });
+        const file = new File([], name, { type })
 
         const event = new Event('change')
         Object.defineProperty(event, 'target', { value: { files: [file] } })

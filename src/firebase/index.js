@@ -6,4 +6,5 @@ const config = {
     storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET
 }
 
-firebase.initializeApp(config)
+export const app = firebase.initializeApp(config)
+export const storage = app.storage().ref()
