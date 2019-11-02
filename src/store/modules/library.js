@@ -1,6 +1,8 @@
 import { uploadFile } from '../../firebase/storage'
 
 export default {
+    namespaced: true, 
+    
     state: {
         books: []
     },
