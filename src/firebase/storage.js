@@ -5,7 +5,7 @@ export async function uploadFile(file) {
         throw new Error('Incorrect parameter')   
     }
 
-    const ref = storage.child(file.name).put(file)
+    const snapshot = await storage.child(file.name).put(file)
 
-    return ref.getDownloadURL()
+    return snapshot.ref.getDownloadURL()
 }

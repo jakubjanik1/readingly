@@ -2,8 +2,11 @@ import { uploadFile } from '../../../src/firebase/storage'
 import { storage } from '../../../src/firebase'
 
 storage.child = jest.fn(path => storage)
-storage.put = jest.fn(file => storage)
-storage.getDownloadURL = jest.fn(() => Promise.resolve('path/to/file'))
+storage.put = jest.fn(file => Promise.resolve({ 
+    ref: {
+        getDownloadURL: jest.fn(() => Promise.resolve('path/to/file'))
+    }
+}))
 
 describe('Firebase Storage', () => {
     describe('uploadFile', () => {
