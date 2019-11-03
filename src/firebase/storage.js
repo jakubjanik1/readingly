@@ -9,3 +9,9 @@ export async function uploadFile(file) {
 
     return snapshot.ref.getDownloadURL()
 }
+
+export async function getFiles() {
+    const { items } = await storage.listAll()
+
+    return Promise.all(items.map(file => file.getDownloadURL()))
+}
