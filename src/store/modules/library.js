@@ -1,4 +1,4 @@
-import { uploadFile } from '../../firebase/storage'
+import { uploadFile, getFiles } from '../../firebase/storage'
 
 export default {
     namespaced: true, 
@@ -10,6 +10,9 @@ export default {
     mutations: {
         pushBook({ books }, book) {
             books.push(book)
+        },
+        setBooks(state, books) {
+            state.books = books
         }
     },
 
@@ -18,6 +21,11 @@ export default {
             const bookUrl = await uploadFile(book)
 
             commit('pushBook', bookUrl)
+        },
+        async getBooks({ commit }) {
+            const books = await getFiles()
+
+            commit('setBooks', books)
         }
     }
 }
