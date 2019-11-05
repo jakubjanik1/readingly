@@ -21,9 +21,9 @@ describe('Firebase Storage', () => {
         it('should works when file is passed', async () => {
             const file = new File([], 'book.pdf', { type: 'application/pdf' })
 
-            const path = await uploadFile(file)
+            const path = await uploadFile(file, 'files')
 
-            expect(storage.child).toHaveBeenCalledWith(file.name)
+            expect(storage.child).toHaveBeenCalledWith(`files/${ file.name }`)
             expect(storage.put).toHaveBeenCalledWith(file)
             expect(path).toEqual('path/to/file')
         })
@@ -37,8 +37,9 @@ describe('Firebase Storage', () => {
 
     describe('getFiles', () => {
         it('gets all files from storage', async () => {
-            const files = await getFiles()
+            const files = await getFiles('files')
 
+            expect(storage.child).toHaveBeenCalledWith('files')
             expect(storage.listAll).toHaveBeenCalled()
             expect(files).toEqual(['path/to/file1', 'path/to/file2', 'path/to/file3'])
         })
