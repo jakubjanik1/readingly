@@ -13,7 +13,7 @@ exports.createThumbnail = https.onRequest((req, res) => {
     const fileName = path.basename(filePath)
     const tempFilePath = path.join(os.tmpdir(), fileName)
 
-    const newName = path.basename(filePath, '.pdf') + '.png'
+    const newName = path.basename(filePath, '.pdf') + '.jpg'
     const tempNewPath = path.join(os.tmpdir(), newName)
 
     const bucket = admin.storage().bucket()
@@ -25,10 +25,10 @@ exports.createThumbnail = https.onRequest((req, res) => {
             gs()
                 .batch()
                 .nopause()
-                .option('-r' + 50 * 2)
-                .option('-dDownScaleFactor=2')
+                .option('-dFirstPage=1')
+                .option('-dLastPage=1')
                 .executablePath('lambda-ghostscript/bin/./gs')
-                .device('png16m')
+                .device('jpeg')
                 .output(tempNewPath)
                 .input(tempFilePath)
                 .exec((err) => {
@@ -42,6 +42,9 @@ exports.createThumbnail = https.onRequest((req, res) => {
     }).then(async () => {
         await bucket.upload(tempNewPath, { destination: newName })
 
-        return res.send('Success')
+        return res.send(`https://firebasestorage.googleapis.com/v0/b/readingly-ab5f7.appspot.com/o/${ newName }?alt=media`)
+    }).then(() => {
+        fs.unlinkSync(tempNewPath)
+        fs.unlinkSync(tempFilePath)
     })
 })
