@@ -4,15 +4,15 @@ import { storage } from '../../../src/firebase'
 storage.child = jest.fn(path => storage)
 storage.put = jest.fn(file => Promise.resolve({ 
     ref: {
-        getDownloadURL: jest.fn(() => Promise.resolve('path/to/file'))
+        getDownloadURL: jest.fn(() => Promise.resolve('path/to/file.pdf'))
     }
 }))
 
 storage.listAll = jest.fn(() => Promise.resolve({
     items: [
-        { getDownloadURL: jest.fn(() => Promise.resolve('path/to/file1')) },
-        { getDownloadURL: jest.fn(() => Promise.resolve('path/to/file2')) },
-        { getDownloadURL: jest.fn(() => Promise.resolve('path/to/file3')) }
+        { name: 'file1.pdf', getDownloadURL: jest.fn(() => Promise.resolve('path/to/file1.pdf')) },
+        { name: 'file2.jpg', getDownloadURL: jest.fn(() => Promise.resolve('path/to/file2.jpg')) },
+        { name: 'file3.jpg', getDownloadURL: jest.fn(() => Promise.resolve('path/to/file3.jpg')) }
     ]
 }))
 
@@ -21,11 +21,11 @@ describe('Firebase Storage', () => {
         it('should works when file is passed', async () => {
             const file = new File([], 'book.pdf', { type: 'application/pdf' })
 
-            const path = await uploadFile(file, 'files')
+            const path = await uploadFile(file)
 
-            expect(storage.child).toHaveBeenCalledWith(`files/${ file.name }`)
+            expect(storage.child).toHaveBeenCalledWith(file.name)
             expect(storage.put).toHaveBeenCalledWith(file)
-            expect(path).toEqual('path/to/file')
+            expect(path).toEqual('path/to/file.pdf')
         })
 
         it('should throws an error when not file is passed', async () => {
@@ -37,11 +37,19 @@ describe('Firebase Storage', () => {
 
     describe('getFiles', () => {
         it('gets all files from storage', async () => {
-            const files = await getFiles('files')
+            const files = await getFiles()
 
-            expect(storage.child).toHaveBeenCalledWith('files')
+            expect(storage.child).toHaveBeenCalled()
             expect(storage.listAll).toHaveBeenCalled()
-            expect(files).toEqual(['path/to/file1', 'path/to/file2', 'path/to/file3'])
+            expect(files).toEqual(['path/to/file1.pdf', 'path/to/file2.jpg', 'path/to/file3.jpg'])
+        })
+
+        it('gets all files matching the pattern', async () => {
+            const files = await getFiles(/.*\.jpg/)
+
+            expect(storage.child).toHaveBeenCalled()
+            expect(storage.listAll).toHaveBeenCalled()
+            expect(files).toEqual(['path/to/file2.jpg', 'path/to/file3.jpg'])
         })
     })
 })
