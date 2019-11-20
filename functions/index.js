@@ -8,8 +8,11 @@ const admin = require('firebase-admin')
 admin.initializeApp()
 
 exports.createThumbnail = https.onRequest((req, res) => {
+    if (! req.file) {
+        return res.status(400).send('File is not specified')
+    }
+
     const filePath = /o\/(.*)\?/.exec(req.body.file)[1].replace('%2F', '/')
-    const fileDir = path.dirname(filePath)
     const fileName = path.basename(filePath)
     const tempFilePath = path.join(os.tmpdir(), fileName)
 
@@ -42,7 +45,7 @@ exports.createThumbnail = https.onRequest((req, res) => {
     }).then(async () => {
         await bucket.upload(tempNewPath, { destination: newName })
 
-        return res.send(`https://firebasestorage.googleapis.com/v0/b/readingly-ab5f7.appspot.com/o/${ newName }?alt=media`)
+        return res.status(200).send(`https://firebasestorage.googleapis.com/v0/b/readingly-ab5f7.appspot.com/o/${ newName }?alt=media`)
     }).then(() => {
         fs.unlinkSync(tempNewPath)
         fs.unlinkSync(tempFilePath)
