@@ -9,7 +9,7 @@ admin.initializeApp()
 
 exports.createThumbnail = https.onRequest((req, res) => {
     cors(req, res, () => {
-        if (! req.file) {
+        if (! req.body.file) {
             return res.status(400).send('File is not specified')
         }
 
