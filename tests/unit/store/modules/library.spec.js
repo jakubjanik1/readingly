@@ -1,9 +1,14 @@
 import library from '@/store/modules/library'
 import { uploadFile, getFiles } from '@/firebase/storage'
+import { createThumbnail } from '@/services/pdf.service'
 
 jest.mock('@/firebase/storage', () => ({
     uploadFile: jest.fn(() => Promise.resolve('path/to/book')),
     getFiles: jest.fn(() => Promise.resolve(['path/to/book1', 'path/to/book2', 'path/to/book3']))
+}))
+
+jest.mock('@/services/pdf.service', () => ({
+    createThumbnail: jest.fn(() => Promise.resolve('path/to/thumbnail'))
 }))
 
 describe('Store - library', () => {
@@ -46,7 +51,8 @@ describe('Store - library', () => {
             await library.actions.addBook({ commit }, book)
 
             expect(uploadFile).toHaveBeenCalledWith(book)
-            expect(commit).toHaveBeenCalledWith('pushBook', 'path/to/book')
+            expect(createThumbnail).toHaveBeenCalledWith('path/to/book')
+            expect(commit).toHaveBeenCalledWith('pushBook', 'path/to/thumbnail')
         })
 
         it('getBooks fetches books', async () => {
