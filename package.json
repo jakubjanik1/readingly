@@ -8,6 +8,7 @@
     "test:unit": "vue-cli-service test:unit --watch"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "core-js": "^3.1.2",
     "firebase": "^7.2.1",
     "vue": "^2.6.10",
@@ -20,6 +21,7 @@
     "@vue/cli-plugin-unit-jest": "^4.0.0",
     "@vue/cli-service": "^4.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
+    "nock": "^11.7.0",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
@@ -31,7 +33,9 @@
   },
   "jest": {
     "preset": "@vue/cli-plugin-unit-jest",
-    "transformIgnorePatterns": ["/node_modules/(?!vue-material-design-icons)"]
+    "transformIgnorePatterns": [
+      "/node_modules/(?!vue-material-design-icons)"
+    ]
   },
   "postcss": {
     "plugins": {
