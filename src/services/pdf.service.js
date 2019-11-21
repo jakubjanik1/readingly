@@ -1,10 +1,10 @@
-import axios from 'axios'
+import { post } from 'axios'
 
 export async function createThumbnail(file) {
     try {
-        const response = await axios.post('https://us-central1-readingly-ab5f7.cloudfunctions.net/createThumbnail', { file })
+        const { data } = await post(`${ process.env.VUE_APP_FIREBASE_API_URL }/createThumbnail`, { file })
 
-        return response.data
+        return data
     } catch (err) {
         throw new Error(err.response.data)
     }
