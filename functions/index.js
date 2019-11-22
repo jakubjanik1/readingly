@@ -13,7 +13,9 @@ exports.createThumbnail = https.onRequest((req, res) => {
             return res.status(400).send('File is not specified')
         }
 
-        const filePath = /o\/(.*)\?/.exec(req.body.file)[1].replace('%2F', '/')
+        let filePath = /o\/(.*)\?/.exec(req.body.file)[1].replace('%2F', '/')
+        filePath = decodeURI(filePath)
+
         const fileName = path.basename(filePath)
         const tempFilePath = path.join(os.tmpdir(), fileName)
 
