@@ -15,3 +15,11 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    .book, .book__thumbnail {
+        width: 140px;
+        height: 224px;
+        border-radius: 4px;
+    }
+</style>

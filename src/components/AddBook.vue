@@ -49,7 +49,7 @@ export default {
         }
 
         &__icon {
-            color: #647284;
+            color: #000;
             height: 32px;
         }
     }

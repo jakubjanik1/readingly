@@ -1,6 +1,9 @@
 <template>
     <div class="library">
-        <AddBook @change="addBook($event)" />
+        <AddBook 
+            class="library__add-book"
+            @change="addBook($event)"
+        />
 
         <Book 
             v-for="book in books" 
@@ -33,6 +36,21 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+    .library {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        grid-auto-rows: 224px;
+        grid-gap: 1.5em;
+        justify-items: center;
+        padding: 64px 1.5em 1.5em 1.5em;
+        background: #f9f9f9;
+        box-sizing: border-box;
+        height: 100vh;
 
+        &__add-book {
+            position: absolute;
+            top: 16px;
+        }
+    }
 </style>
