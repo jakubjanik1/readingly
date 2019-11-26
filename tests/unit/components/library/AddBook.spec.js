@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import AddBook from '@/components/AddBook.vue'
+import AddBook from '@/components/library/AddBook'
 
 describe('AddBook', () => {
     let wrapper

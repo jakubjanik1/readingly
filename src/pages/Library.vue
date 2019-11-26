@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import AddBook from '@/components/AddBook'
-import BookUploading from '@/components/BookUploading'
-import Book from '@/components/Book'
+import AddBook from '@/components/library/AddBook'
+import BookUploading from '@/components/library/BookUploading'
+import Book from '@/components/library/Book'
 import { mapActions, mapState } from 'vuex'
 
 export default {

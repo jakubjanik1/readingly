@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import BookUploading from '@/components/BookUploading'
+import BookUploading from '@/components/library/BookUploading'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
 
 describe('BookUploading', () => {

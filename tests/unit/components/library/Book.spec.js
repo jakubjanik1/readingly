@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import Book from '@/components/Book'
+import Book from '@/components/library/Book'
 
 describe('Book', () => {
     it('contains book thumbnail image with "src" prop', () => {
