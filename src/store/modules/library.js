@@ -5,22 +5,30 @@ export default {
     namespaced: true, 
     
     state: {
-        books: []
+        books: [],
+        bookIsUploading: false
     },
 
     mutations: {
         pushBook({ books }, book) {
-            books.push(book)
+            books.unshift(book)
         },
         setBooks(state, books) {
             state.books = books
+        },
+        setBookIsUploading(state, value) {
+            state.bookIsUploading = value
         }
     },
 
     actions: {
         async addBook({ commit }, book) {
+            commit('setBookIsUploading', true)
+
             const bookUrl = await uploadFile(book)
             const bookThumbnail = await createThumbnail(bookUrl)
+
+            commit('setBookIsUploading', false)
 
             commit('pushBook', bookThumbnail)
         },

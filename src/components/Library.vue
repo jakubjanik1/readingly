@@ -5,6 +5,8 @@
             @change="addBook($event)"
         />
 
+        <BookUploading v-if="bookIsUploading" />
+
         <Book 
             v-for="book in books" 
             :src="book" 
@@ -15,6 +17,7 @@
 
 <script>
 import AddBook from '@/components/AddBook'
+import BookUploading from '@/components/BookUploading'
 import Book from '@/components/Book'
 import { mapActions, mapState } from 'vuex'
 
@@ -22,10 +25,11 @@ export default {
     name: 'Library',
     components: {
         AddBook,
-        Book
+        Book,
+        BookUploading
     },
     computed: {
-        ...mapState('library', ['books'])
+        ...mapState('library', ['books', 'bookIsUploading'])
     },
     created() {
         this.getBooks()

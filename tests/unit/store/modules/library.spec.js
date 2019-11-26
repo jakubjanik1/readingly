@@ -36,6 +36,14 @@ describe('Store - library', () => {
             expect(state.books).toHaveLength(books.length)
             expect(state.books).toEqual(books)
         })
+
+        it('setBookIsUploading sets new value', () => {
+            expect(state.bookIsUploading).toBe(false)
+
+            library.mutations.setBookIsUploading(state, true)
+
+            expect(state.bookIsUploading).toBe(true)
+        })
     })
 
     describe('actions', () => {
@@ -50,9 +58,11 @@ describe('Store - library', () => {
 
             await library.actions.addBook({ commit }, book)
 
+            expect(commit).toHaveBeenCalledWith('setBookIsUploading', true)
+            expect(commit).toHaveBeenCalledWith('setBookIsUploading', false)
             expect(uploadFile).toHaveBeenCalledWith(book)
             expect(createThumbnail).toHaveBeenCalledWith('path/to/book')
-            expect(commit).toHaveBeenCalledWith('pushBook', 'path/to/thumbnail')
+            expect(commit).toHaveBeenLastCalledWith('pushBook', 'path/to/thumbnail')
         })
 
         it('getBooks fetches books', async () => {
