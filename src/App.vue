@@ -1,16 +1,8 @@
 <template>
   <div id="app">
-    <Library />    
+    <router-view />
   </div>
 </template>
-
-<script>
-import Library from './components/Library'
-
-export default {
-  components: { Library }
-}
-</script>
 
 <style lang="scss">
     body {

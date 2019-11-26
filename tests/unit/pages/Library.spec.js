@@ -1,4 +1,4 @@
-import Library from '@/components/Library.vue'
+import Library from '@/pages/Library.vue'
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import library from '@/store/modules/library'
