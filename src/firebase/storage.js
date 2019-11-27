@@ -14,6 +14,15 @@ export async function getFiles(pattern) {
     let { items } = await storage.child('').listAll()
 
     items = items.filter(({name}) => name.match(pattern))
+    
+    items = await Promise.all(
+        items.map(async file => ({ 
+            date: (await file.getMetadata()).timeCreated, 
+            url: await file.getDownloadURL() 
+        })
+    ))
 
-    return Promise.all(items.map(file => file.getDownloadURL()))
+    items.sort((a, b) => new Date(b.date) - new Date(a.date))
+
+    return items.map(file => file.url)
 }

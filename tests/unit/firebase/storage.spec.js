@@ -9,10 +9,19 @@ storage.put = jest.fn(file => Promise.resolve({
 }))
 
 storage.listAll = jest.fn(() => Promise.resolve({
-    items: [
-        { name: 'file1.pdf', getDownloadURL: jest.fn(() => Promise.resolve('path/to/file1.pdf')) },
-        { name: 'file2.jpg', getDownloadURL: jest.fn(() => Promise.resolve('path/to/file2.jpg')) },
-        { name: 'file3.jpg', getDownloadURL: jest.fn(() => Promise.resolve('path/to/file3.jpg')) }
+    items: [{ 
+            name: 'file1.pdf', 
+            getDownloadURL: () => Promise.resolve('path/to/file1.pdf'), 
+            getMetadata: () => Promise.resolve({ timeCreated: new Date() - 60 })
+        }, { 
+            name: 'file2.jpg', 
+            getDownloadURL: () => Promise.resolve('path/to/file2.jpg'),
+            getMetadata: () => Promise.resolve({ timeCreated: new Date() })
+        }, { 
+            name: 'file3.jpg', 
+            getDownloadURL: () => Promise.resolve('path/to/file3.jpg'),
+            getMetadata: () => Promise.resolve({ timeCreated: new Date() - 120 })
+        }
     ]
 }))
 
@@ -36,12 +45,12 @@ describe('Firebase Storage', () => {
     })
 
     describe('getFiles', () => {
-        it('gets all files from storage', async () => {
+        it('gets all files from storage sorted in descending order by created date', async () => {
             const files = await getFiles()
 
             expect(storage.child).toHaveBeenCalled()
             expect(storage.listAll).toHaveBeenCalled()
-            expect(files).toEqual(['path/to/file1.pdf', 'path/to/file2.jpg', 'path/to/file3.jpg'])
+            expect(files).toEqual(['path/to/file2.jpg', 'path/to/file1.pdf', 'path/to/file3.jpg'])
         })
 
         it('gets all files matching the pattern', async () => {
