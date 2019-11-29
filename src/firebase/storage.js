@@ -1,11 +1,12 @@
 import { storage } from '@/firebase'
+import { uuid } from 'uuidv4'
 
 export async function uploadFile(file) {
     if (! (file instanceof Blob)) {
         throw new Error('Incorrect parameter')   
     }
 
-    const snapshot = await storage.child(file.name).put(file)
+    const snapshot = await storage.child(uuid() + '.pdf').put(file)
 
     return snapshot.ref.getDownloadURL()
 }

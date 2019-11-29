@@ -1,5 +1,6 @@
 import { uploadFile, getFiles } from '../../../src/firebase/storage'
 import { storage } from '../../../src/firebase'
+import { isUuid } from 'uuidv4'
 
 storage.child = jest.fn(path => storage)
 storage.put = jest.fn(file => Promise.resolve({ 
@@ -32,7 +33,7 @@ describe('Firebase Storage', () => {
 
             const path = await uploadFile(file)
 
-            expect(storage.child).toHaveBeenCalledWith(file.name)
+            expect(isUuid(storage.child.mock.calls[0][0])).toBe(true)
             expect(storage.put).toHaveBeenCalledWith(file)
             expect(path).toEqual('path/to/file.pdf')
         })

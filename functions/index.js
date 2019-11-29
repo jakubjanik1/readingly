@@ -14,7 +14,6 @@ exports.createThumbnail = https.onRequest((req, res) => {
         }
 
         let filePath = /o\/(.*)\?/.exec(req.body.file)[1].replace('%2F', '/')
-        filePath = decodeURI(filePath)
 
         const fileName = path.basename(filePath)
         const tempFilePath = path.join(os.tmpdir(), fileName)

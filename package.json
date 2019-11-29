@@ -11,6 +11,7 @@
     "axios": "^0.19.0",
     "core-js": "^3.1.2",
     "firebase": "^7.2.1",
+    "uuidv4": "^6.0.0",
     "vue": "^2.6.10",
     "vue-material-design-icons": "^4.1.0",
     "vue-router": "^3.0.6",
