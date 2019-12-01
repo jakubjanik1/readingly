@@ -1,5 +1,5 @@
 <template>
-    <div class="book">
+    <div class="book" @click="openBook">
         <img class="book__thumbnail" :src="src">
     </div>
 </template>
@@ -11,6 +11,11 @@ export default {
         src: {
             type: String,
             required: true
+        }
+    },
+    methods: {
+        openBook() {
+            this.$router.push({ name: 'reader', params: { src: this.src }})
         }
     }
 }
