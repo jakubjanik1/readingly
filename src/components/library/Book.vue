@@ -23,8 +23,8 @@ export default {
 
 <style lang="scss" scoped>
     .book, .book__thumbnail {
-        width: 140px;
-        height: 224px;
+        width: 120px;
+        height: 192px;
         border-radius: 4px;
     }
 </style>

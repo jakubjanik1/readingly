@@ -1,17 +1,22 @@
 <template>
     <div class="library">
-        <AddBook 
-            class="library__add-book"
-            @change="addBook($event)"
-        />
+        <div class="library__topbar">
+            <AddBook @change="addBook($event)" />
 
-        <BookUploading v-if="bookIsUploading" />
+            <div>LIBRARY</div>
 
-        <Book 
-            v-for="book in books" 
-            :src="book" 
-            :key="book" 
-        />
+            <SearchIcon class="library__search" size="1.3em" />
+        </div>
+
+        <div class="library__books">
+            <BookUploading v-if="bookIsUploading" />
+
+            <Book 
+                v-for="book in books" 
+                :src="book" 
+                :key="book" 
+            />
+        </div>
     </div>
 </template>
 
@@ -19,6 +24,7 @@
 import AddBook from '@/components/library/AddBook'
 import BookUploading from '@/components/library/BookUploading'
 import Book from '@/components/library/Book'
+import SearchIcon from 'vue-material-design-icons/Magnify'
 import { mapActions, mapState } from 'vuex'
 
 export default {
@@ -26,7 +32,8 @@ export default {
     components: {
         AddBook,
         Book,
-        BookUploading
+        BookUploading,
+        SearchIcon
     },
     computed: {
         ...mapState('library', ['books', 'bookIsUploading'])
@@ -42,19 +49,32 @@ export default {
 
 <style lang="scss" scoped>
     .library {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        grid-auto-rows: 224px;
-        grid-gap: 1.5em;
-        justify-items: center;
-        padding: 64px 1.5em 1.5em 1.5em;
         background: #f9f9f9;
-        box-sizing: border-box;
         height: 100vh;
+        box-sizing: border-box;
+        padding: 1.1em;
+        font: {
+            size: 1.1em;
+            weight: 500;
+        }
 
-        &__add-book {
-            position: absolute;
-            top: 16px;
+        &__topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__books {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            grid-auto-rows: 192px;
+            grid-gap: 1.1em;
+            justify-items: center;
+            margin-top: 1.2em;
+        }
+
+        &__search {
+            height: 1.3em;
         }
     }
 </style>

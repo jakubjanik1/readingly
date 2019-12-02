@@ -6,7 +6,7 @@
             ref="input"
             @change="handleFileChange"
         >
-        <AddIcon class="add-book__icon" :size="32" />
+        <AddIcon class="add-book__icon" size="1.3em" />
     </div>
 </template>
 
@@ -38,7 +38,7 @@ export default {
 
 <style lang="scss" scoped>
     .add-book {    
-        width: 32px;
+        width: 1.3em;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -50,7 +50,7 @@ export default {
 
         &__icon {
             color: #000;
-            height: 32px;
+            height: 1.3em;
         }
     }
 </style>
