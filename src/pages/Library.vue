@@ -5,7 +5,7 @@
 
             <div>LIBRARY</div>
 
-            <SearchIcon class="library__search" size="1.3em" />
+            <SearchIcon class="library__search" :size="21" />
         </div>
 
         <div class="library__books">
@@ -74,7 +74,8 @@ export default {
         }
 
         &__search {
-            height: 1.3em;
+            display: flex;
+            justify-content: center;
         }
     }
 </style>

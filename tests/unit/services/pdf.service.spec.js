@@ -5,7 +5,7 @@ describe('Pdf Service', () => {
     let request
 
     beforeEach(() => {
-        request = nock('https://us-central1-readingly-ab5f7.cloudfunctions.net')
+        request = nock(process.env.VUE_APP_FIREBASE_API_URL)
             .post('/createThumbnail')
     })
 

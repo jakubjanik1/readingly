@@ -6,7 +6,7 @@
             ref="input"
             @change="handleFileChange"
         >
-        <AddIcon class="add-book__icon" size="1.3em" />
+        <AddIcon class="add-book__icon" />
     </div>
 </template>
 
@@ -50,7 +50,8 @@ export default {
 
         &__icon {
             color: #000;
-            height: 1.3em;
+            display: flex;
+            justify-content: center;
         }
     }
 </style>
