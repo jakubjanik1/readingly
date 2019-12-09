@@ -26,7 +26,7 @@ export default {
             const file = event.target.files[0]
             this.$refs.input.value = ''
 
-            if (file.type != 'application/pdf') {
+            if (file.type != 'application/pdf' && file.type != 'application/epub+zip') {
                 return this.$emit('error', 'Invalid book format')
             }
 
