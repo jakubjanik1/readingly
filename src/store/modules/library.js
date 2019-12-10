@@ -1,5 +1,5 @@
 import { uploadFile, getFiles } from '@/firebase/storage'
-import { createThumbnail } from '@/services/pdf.service'
+import { createThumbnail } from '@/services/book.service'
 
 export default {
     namespaced: true, 
@@ -26,14 +26,14 @@ export default {
             commit('setBookIsUploading', true)
 
             const bookUrl = await uploadFile(book)
-            const bookThumbnail = await createThumbnail(bookUrl)
+            await createThumbnail(bookUrl)
 
             commit('setBookIsUploading', false)
 
-            commit('pushBook', bookThumbnail)
+            commit('pushBook', bookUrl)
         },
         async getBooks({ commit }) {
-            const books = await getFiles(/.*\.jpg/)
+            const books = await getFiles(/.*\.(pdf|epub)/)
 
             commit('setBooks', books)
         }

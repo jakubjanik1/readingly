@@ -6,7 +6,8 @@ export async function uploadFile(file) {
         throw new Error('Incorrect parameter')   
     }
 
-    const snapshot = await storage.child(uuid() + '.pdf').put(file)
+    const extension = file.name.split('.').pop()
+    const snapshot = await storage.child(uuid() + '.' + extension).put(file)
 
     return snapshot.ref.getDownloadURL()
 }

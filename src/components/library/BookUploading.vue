@@ -17,8 +17,8 @@ export default {
 
 <style lang="scss" scoped>
     .book-uploading {
-        width: 140px;
-        height: 224px;
+        width: 120px;
+        height: 192px;
         border-radius: 4px;
         background: #e1e1e1;
         display: flex;

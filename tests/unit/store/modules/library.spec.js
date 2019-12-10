@@ -1,13 +1,13 @@
 import library from '@/store/modules/library'
 import { uploadFile, getFiles } from '@/firebase/storage'
-import { createThumbnail } from '@/services/pdf.service'
+import { createThumbnail } from '@/services/book.service'
 
 jest.mock('@/firebase/storage', () => ({
     uploadFile: jest.fn(() => Promise.resolve('path/to/book')),
-    getFiles: jest.fn(() => Promise.resolve(['path/to/book1', 'path/to/book2', 'path/to/book3']))
+    getFiles: jest.fn(() => Promise.resolve(['path/to/book1.pdf', 'path/to/book2.epub', 'path/to/book3.pdf']))
 }))
 
-jest.mock('@/services/pdf.service', () => ({
+jest.mock('@/services/book.service', () => ({
     createThumbnail: jest.fn(() => Promise.resolve('path/to/thumbnail'))
 }))
 
@@ -62,14 +62,14 @@ describe('Store - library', () => {
             expect(commit).toHaveBeenCalledWith('setBookIsUploading', false)
             expect(uploadFile).toHaveBeenCalledWith(book)
             expect(createThumbnail).toHaveBeenCalledWith('path/to/book')
-            expect(commit).toHaveBeenLastCalledWith('pushBook', 'path/to/thumbnail')
+            expect(commit).toHaveBeenLastCalledWith('pushBook', 'path/to/book')
         })
 
         it('getBooks fetches books', async () => {
             await library.actions.getBooks({ commit })
 
-            expect(getFiles).toHaveBeenCalled()
-            expect(commit).toHaveBeenCalledWith('setBooks', ['path/to/book1', 'path/to/book2', 'path/to/book3'])
+            expect(getFiles).toHaveBeenCalledWith(/.*\.(pdf|epub)/)
+            expect(commit).toHaveBeenCalledWith('setBooks', ['path/to/book1.pdf', 'path/to/book2.epub', 'path/to/book3.pdf'])
         })
     })
 })

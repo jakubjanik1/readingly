@@ -7,7 +7,7 @@ describe('Book', () => {
     beforeEach(() => {
         wrapper = shallowMount(Book, {
             propsData: {
-                src: 'path/to/thumbnail'
+                src: 'path/to/book.pdf'
             },
             mocks: {
                 $router: {
@@ -17,11 +17,22 @@ describe('Book', () => {
         })
     })
 
-    it('contains book thumbnail image with "src" prop', () => {
-        const thumbnailImg = wrapper.find('img.book__thumbnail')
+    it('shows book thumbnail image when it is a pdf file', () => {
+        const thumbnail = wrapper.find('img.book__thumbnail')
 
-        expect(thumbnailImg.exists()).toBe(true)
-        expect(thumbnailImg.attributes('src')).toBe('path/to/thumbnail')
+        expect(thumbnail.exists()).toBe(true)
+        expect(thumbnail.attributes('src')).toBe('path/to/book.jpg')
+    })
+
+    it('shows default cover when it is a epub file', () => {
+        wrapper.setProps({
+            src: 'path/to/book.epub'
+        })
+
+        const thumbnail = wrapper.find('.book__thumbnail')
+
+        expect(thumbnail.exists()).toBe(true)
+        expect(thumbnail.html()).toContain('EPUB')
     })
 
     it('shows an error when "src" prop is not provided', () => {

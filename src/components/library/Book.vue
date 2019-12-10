@@ -1,6 +1,7 @@
 <template>
     <div class="book" @click="openBook">
-        <img class="book__thumbnail" :src="src">
+        <img class="book__thumbnail" v-if="isPdf" :src="src.replace('pdf', 'jpg')">
+        <div class="book__thumbnail" v-else>EPUB</div>
     </div>
 </template>
 
@@ -10,12 +11,18 @@ export default {
     props: {
         src: {
             type: String,
-            required: true
+            required: true,
+            default: ''
         }
     },
     methods: {
         openBook() {
             this.$router.push({ name: 'reader', params: { src: this.src }})
+        }
+    },
+    computed: {    
+        isPdf() {
+            return this.src.includes('pdf')
         }
     }
 }
