@@ -32,7 +32,7 @@ describe('Book', () => {
         const thumbnail = wrapper.find('.book__thumbnail')
 
         expect(thumbnail.exists()).toBe(true)
-        expect(thumbnail.html()).toContain('EPUB')
+        setTimeout(() => expect(thumbnail.attributes('src')).toEqual('book_cover'))
     })
 
     it('shows an error when "src" prop is not provided', () => {

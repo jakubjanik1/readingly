@@ -1,7 +1,6 @@
 <template>
     <div class="book" @click="openBook">
-        <img class="book__thumbnail" v-if="isPdf" :src="src.replace('pdf', 'jpg')">
-        <div class="book__thumbnail" v-else>EPUB</div>
+        <img class="book__thumbnail" :src="bookThumbnail">
     </div>
 </template>
 
@@ -21,8 +20,12 @@ export default {
         }
     },
     computed: {    
-        isPdf() {
-            return this.src.includes('pdf')
+        bookThumbnail() {
+            if (this.src.includes('pdf')) {
+                return this.src.replace('pdf', 'jpg')
+             } else {
+                return require('../../assets/book_cover.png')
+             }
         }
     }
 }
