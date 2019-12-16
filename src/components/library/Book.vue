@@ -23,9 +23,9 @@ export default {
         bookThumbnail() {
             if (this.src.includes('pdf')) {
                 return this.src.replace('pdf', 'jpg')
-             } else {
-                return require('../../assets/book_cover.png')
-             }
+            } else {
+                return this.src.replace('epub', 'jpg')
+            }
         }
     }
 }

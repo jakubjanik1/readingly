@@ -19,12 +19,6 @@ describe('Pdf Service', () => {
             expect(request.isDone()).toBe(true)
         })
 
-        it('does nothing when file is epub', async () => {
-            const result = await createThumbnail('path/to/file.epub')
-
-            expect(result).toEqual(undefined)
-        })
-
         it('throws an error when file is not specified', () => {
             expect(createThumbnail()).rejects.toThrowError('File is not specified')
         })  

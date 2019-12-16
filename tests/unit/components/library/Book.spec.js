@@ -24,17 +24,6 @@ describe('Book', () => {
         expect(thumbnail.attributes('src')).toBe('path/to/book.jpg')
     })
 
-    it('shows default cover when it is a epub file', () => {
-        wrapper.setProps({
-            src: 'path/to/book.epub'
-        })
-
-        const thumbnail = wrapper.find('.book__thumbnail')
-
-        expect(thumbnail.exists()).toBe(true)
-        setTimeout(() => expect(thumbnail.attributes('src')).toEqual('book_cover'))
-    })
-
     it('shows an error when "src" prop is not provided', () => {
         console.error = jest.fn()
         

@@ -1,13 +1,13 @@
 import { storage } from '@/firebase'
 import { uuid } from 'uuidv4'
 
-export async function uploadFile(file) {
+export async function uploadFile(file, options = {}) {
     if (! (file instanceof Blob)) {
         throw new Error('Incorrect parameter')   
     }
-
-    const extension = file.name.split('.').pop()
-    const snapshot = await storage.child(uuid() + '.' + extension).put(file)
+  
+    const extension = file.name ? file.name.split('.').pop() : options.ext
+    const snapshot = await storage.child((options.name || uuid())  + '.' + extension).put(file)
 
     return snapshot.ref.getDownloadURL()
 }
