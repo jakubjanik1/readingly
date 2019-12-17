@@ -1,6 +1,6 @@
 <template>
     <div class="book" @click="openBook">
-        <img class="book__thumbnail" :src="bookThumbnail">
+        <img class="book__thumbnail" :src="thumbnail" @error="showDefaultThumbnail">
     </div>
 </template>
 
@@ -14,19 +14,25 @@ export default {
             default: ''
         }
     },
+    data() {
+        return {
+            thumbnail: null
+        }
+    },
     methods: {
         openBook() {
             this.$router.push({ name: 'reader', params: { src: this.src }})
+        },
+        showDefaultThumbnail() {
+            this.thumbnail = process.env.VUE_APP_DEFAULT_BOOK_COVER
         }
     },
-    computed: {    
-        bookThumbnail() {
-            if (this.src.includes('pdf')) {
-                return this.src.replace('pdf', 'jpg')
-            } else {
-                return this.src.replace('epub', 'jpg')
-            }
-        }
+    mounted() {    
+        if (this.src.includes('pdf')) {
+            this.thumbnail = this.src.replace('pdf', 'jpg')
+        } else {
+            this.thumbnail = this.src.replace('epub', 'jpg')
+        }     
     }
 }
 </script>
