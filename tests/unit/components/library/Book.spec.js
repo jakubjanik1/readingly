@@ -41,11 +41,11 @@ describe('Book', () => {
     })
 
     it('should navigate to /reader with proper prop on click', () => {
-        const wrapper = mountBook('path/to/book.epub')
+        const wrapper = mountBook(process.env.VUE_APP_FIREBASE_STORAGE_URL.replace('@', 'book.epub'))
         wrapper.trigger('click')
 
         expect(wrapper.vm.$router.push.mock.calls[0][0].name).toEqual('reader')
-        expect(wrapper.vm.$router.push.mock.calls[0][0].params.src).toEqual(wrapper.props('src'))
+        expect(wrapper.vm.$router.push.mock.calls[0][0].params.book).toEqual('book.epub')
     })
 
     function mountBook(src) {

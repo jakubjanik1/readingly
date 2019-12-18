@@ -14,10 +14,9 @@ export default new VueRouter({
             component: Library
         },
         {
-            path: '/reader',
+            path: '/reader/:book',
             name: 'reader',
-            component: Reader,
-            props: true
+            component: Reader
         }
     ]
 })

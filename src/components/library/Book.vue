@@ -21,7 +21,8 @@ export default {
     },
     methods: {
         openBook() {
-            this.$router.push({ name: 'reader', params: { src: this.src }})
+            const book = /o\/(.*)\?/.exec(this.src)[1]
+            this.$router.push({ name: 'reader', params: { book }})
         },
         showDefaultThumbnail() {
             this.thumbnail = process.env.VUE_APP_DEFAULT_BOOK_COVER
