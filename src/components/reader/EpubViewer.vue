@@ -24,6 +24,12 @@ export default {
         })
 
         rendition.display()
+
+        rendition.on('selected', async cfiRange => {
+            const range = await book.getRange(cfiRange)
+            
+            this.$emit('text-select', range.toString())
+        })
     }
 }
 </script>
