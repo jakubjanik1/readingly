@@ -5,6 +5,8 @@ const path = require('path')
 const fs = require('fs')
 const cors = require('cors')({ origin: true })
 const admin = require('firebase-admin')
+const request = require('request')
+const cheerio = require('cheerio')
 admin.initializeApp()
 
 exports.createThumbnail = https.onRequest((req, res) => {
@@ -52,5 +54,21 @@ exports.createThumbnail = https.onRequest((req, res) => {
             fs.unlinkSync(tempNewPath)
             fs.unlinkSync(tempFilePath)
         })
+    })
+})
+
+exports.translate = https.onRequest((req, res) => {
+    const word = req.body.word
+
+    request(`https://en.bab.la/dictionary/english-polish/${ word }`, (error, {}, html) => {
+        if (! error) {
+            const $ = cheerio.load(html)
+
+            const el = $('.quick-results').first()
+
+            const translations = el.find('.sense-group-results > li > a').map(({}, a) => $(a).text())
+
+            return res.json(translations.toArray())
+        }
     })
 })
