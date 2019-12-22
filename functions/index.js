@@ -60,20 +60,4 @@ app.post('/createThumbnail', (req, res) => {
     })
 })
 
-app.get('/translate/:word', (req, res) => {
-    const word = req.params.word
-
-    request(`https://en.bab.la/dictionary/english-polish/${ word }`, (error, {}, html) => {
-        if (! error) {
-            const $ = cheerio.load(html)
-
-            const el = $('.quick-results').first()
-
-            const translations = el.find('.sense-group-results > li > a').map(({}, a) => $(a).text())
-
-            return res.json(translations.toArray())
-        }
-    })
-})
-
 exports.api = https.onRequest(app)
