@@ -1,6 +1,6 @@
 <template>
     <div class="book-uploading">
-        <ClipLoader color="#00000050" size="54px" />
+        <ClipLoader color="#00000050" size="45px" />
     </div>
 </template>
 

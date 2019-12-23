@@ -17,6 +17,12 @@ export default new VueRouter({
             path: '/reader/:book',
             name: 'reader',
             component: Reader
+        },
+        {
+            path: '*',
+            beforeEnter(to, from, next) {
+                next({ name: 'library' })
+            }
         }
     ]
 })

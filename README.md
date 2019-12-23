@@ -1,1 +1,1 @@
-readingly
+readingly - web ebook reader

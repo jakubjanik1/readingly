@@ -70,7 +70,7 @@ export default {
             grid-auto-rows: 192px;
             grid-gap: 1.1em;
             justify-items: center;
-            margin-top: 1.2em;
+            margin: 1.2em 0 1.2em 0;
         }
 
         &__search {
