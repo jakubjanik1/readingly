@@ -15,11 +15,13 @@
     "uuidv4": "^6.0.0",
     "vue": "^2.6.10",
     "vue-material-design-icons": "^4.1.0",
+    "vue-pdf": "^4.0.7",
     "vue-router": "^3.0.6",
     "vue-spinner": "^1.0.3",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
     "@vue/cli-plugin-babel": "^4.0.0",
     "@vue/cli-plugin-unit-jest": "^4.0.0",
     "@vue/cli-service": "^4.0.0",
@@ -28,11 +30,6 @@
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
-  },
-  "babel": {
-    "presets": [
-      "@vue/cli-plugin-babel/preset"
-    ]
   },
   "jest": {
     "preset": "@vue/cli-plugin-unit-jest",
