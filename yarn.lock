@@ -7545,13 +7545,23 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-pdfjs-dist@2.0.943:
-  version "2.0.943"
-  resolved "https://registry.yarnpkg.com/pdfjs-dist/-/pdfjs-dist-2.0.943.tgz#32fb9a2d863df5a1d89521a0b3cd900c16e7edde"
-  integrity sha512-iLhNcm4XceTHRaSU5o22ZGCm4YpuW5+rf4+BJFH/feBhMQLbCGBry+Jet8Q419QDI4qgARaIQzXuiNrsNWS8Yw==
+pdfjs-dist@^2.0.489:
+  version "2.2.228"
+  resolved "https://registry.yarnpkg.com/pdfjs-dist/-/pdfjs-dist-2.2.228.tgz#777b068a0a16c96418433303807c183058b47aaa"
+  integrity sha512-W5LhYPMS2UKX0ELIa4u+CFCMoox5qQNQElt0bAK2mwz1V8jZL0rvLao+0tBujce84PK6PvWG36Nwr7agCCWFGQ==
   dependencies:
     node-ensure "^0.0.0"
     worker-loader "^2.0.0"
+
+pdfvuer@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/pdfvuer/-/pdfvuer-1.4.0.tgz#29f600291ec7064cd6977cbbf17660e1f374d137"
+  integrity sha512-lZVlB4a9krSOsG6sU7B9rCJsYPrgCheO4Pj9TQqPbt98FFaW8y1eqaXoQ5sAkPkOVi+Ps4ykDJBq+lk/x5emww==
+  dependencies:
+    babel-plugin-syntax-dynamic-import "^6.18.0"
+    pdfjs-dist "^2.0.489"
+    raw-loader "^0.5.1"
+    vue-resize-sensor "^2.0.0"
 
 performance-now@^2.1.0:
   version "2.1.0"
@@ -9894,17 +9904,6 @@ vue-material-design-icons@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/vue-material-design-icons/-/vue-material-design-icons-4.1.0.tgz#4caef9571c9c83a2a73d84c131e137e784689ba1"
   integrity sha512-WP7EA5dY/Gtapw4G9iT7xHTKU4eB75/DKDNC8OkiCziJ32A9SbhOvN52R9wI66I3HLxsABZ/fVYt+J0Wu1fdAw==
-
-vue-pdf@^4.0.7:
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/vue-pdf/-/vue-pdf-4.0.7.tgz#64a5bf0cec2423f7b596d70b4b69d2717b574531"
-  integrity sha512-fId38x4WrD4NalJV4AFzr30iX+IyycI+ii8fFNcgikWBrhHEytZwfOFDwNv57SLgtgBMocYwm+gBIOTyvixXMg==
-  dependencies:
-    babel-plugin-syntax-dynamic-import "^6.18.0"
-    loader-utils "^1.2.3"
-    pdfjs-dist "2.0.943"
-    raw-loader "^0.5.1"
-    vue-resize-sensor "^2.0.0"
 
 vue-resize-sensor@^2.0.0:
   version "2.0.0"

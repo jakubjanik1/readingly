@@ -21,11 +21,8 @@ export default {
     },
     data() {
         return {
-            book: ''
+            book: process.env.VUE_APP_FIREBASE_STORAGE_URL.replace('@', this.$route.params.book)
         }
-    },
-    mounted() {
-        this.book = process.env.VUE_APP_FIREBASE_STORAGE_URL.replace('@', this.$route.params.book)
     },
     computed: {
         isEpub() {
