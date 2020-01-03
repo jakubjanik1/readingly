@@ -38,7 +38,7 @@ app.post('/createThumbnail', (req, res) => {
                 .nopause()
                 .option('-dFirstPage=1')
                 .option('-dLastPage=1')
-                .executablePath('lambda-ghostscript/bin/./gs')
+                .executablePath('ghostscript/bin/./gs')
                 .device('jpeg')
                 .output(tempNewPath)
                 .input(tempFilePath)

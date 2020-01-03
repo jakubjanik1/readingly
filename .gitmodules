@@ -1,6 +1,3 @@
-[submodule "path_to_submodule"]
-  path = functions/lambda-ghostscript
-  url = https://github.com/sina-masnadi/lambda-ghostscript.git
-[submodule "lambda-ghostscript"]
-	path = functions/lambda-ghostscript
+[submodule "ghostscript"]
+	path = functions/firebase/ghostscript
 	url = https://github.com/sina-masnadi/lambda-ghostscript.git
