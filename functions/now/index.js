@@ -1,8 +1,14 @@
+const express = require('express')
 const { get } = require('axios')
 const cheerio = require('cheerio')
+const cors = require('cors')
 
-module.exports = async (req, res) => {
-    const { word } = req.query
+const app = express()
+
+app.use(cors({ origin: true }))
+
+app.get('/translate/:word', async (req, res) => {
+    const { word } = req.params
     
     const { data } = await get(`https://en.bab.la/dictionary/english-polish/${ word }`)
     const $ = cheerio.load(data)
@@ -22,4 +28,6 @@ module.exports = async (req, res) => {
     }).get()
 
     res.json({ translations: results })
-}
+})
+
+app.listen(3000)
