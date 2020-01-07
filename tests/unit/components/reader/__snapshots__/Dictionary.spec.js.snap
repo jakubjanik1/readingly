@@ -1,14 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dictionary shows translations when are available 1`] = `
-<div>
-  <div>
-    mutter {noun} <br>
-    mamrotanie
-  </div>
-  <div>
-    to mutter {vb} <br>
-    szemrać mamrotać przebąkiwać mruknąć
+<div class="dictionary">
+  <div class="dictionary__word">mutter</div>
+  <div class="dictionary__translations">
+    <div>
+      <div class="dictionary__key">mutter {noun}</div>
+      <div>mamrotanie</div>
+    </div>
+    <div>
+      <div class="dictionary__key">to mutter {vb}</div>
+      <div>szemrać ● mamrotać ● przebąkiwać ● mruknąć</div>
+    </div>
   </div>
 </div>
 `;
