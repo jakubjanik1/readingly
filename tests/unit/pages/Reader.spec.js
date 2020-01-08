@@ -22,6 +22,17 @@ describe('Reader', () => {
         expect(pdfViewer.props('src')).toBe(process.env.VUE_APP_FIREBASE_STORAGE_URL.replace('@', 'book.pdf'))
     })
 
+    it('shows Dictionary when EpubViewer emits "text-select" event', () => {
+        const wrapper = mountReader('book.epub')
+        const dictionary = wrapper.find({ name: 'Dictionary' })
+
+        expect(dictionary.isVisible()).toBe(false)
+
+        wrapper.find({ name: 'EpubViewer' }).trigger('text-select', 'mutter')
+
+        expect(dictionary.isVisible()).toBe(true)
+    })
+
     function mountReader(book) {
         return shallowMount(Reader, {
             mocks: {
