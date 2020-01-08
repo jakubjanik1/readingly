@@ -1,12 +1,14 @@
 import { shallowMount } from '@vue/test-utils'
 import Dictionary from '@/components/reader/Dictionary'
 import moxios from 'moxios'
+import Vue from 'vue'
+Vue.config.ignoredElements = ['modal']
 
 describe('Dictionary', () => {
     beforeEach(() => moxios.install())
     afterAll(() => moxios.uninstall())
 
-    it('shows info when translations are not available', (done) => {
+    it('shows info when translations are not available', async (done) => {
         moxios.stubRequest(process.env.VUE_APP_NOW_API_URL + '/translate/badword', {
             response: {}
         })
@@ -17,6 +19,7 @@ describe('Dictionary', () => {
             }
         })
 
+        await wrapper.vm.$nextTick()
         expect(wrapper.html()).toContain('Loading...')
 
         moxios.wait(() => {

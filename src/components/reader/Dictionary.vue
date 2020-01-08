@@ -1,5 +1,10 @@
 <template>
-    <div class="dictionary">
+    <modal 
+        classes="dictionary" 
+        name="dictionary" 
+        :adaptive="true" 
+        :min-height="200"
+    >
         <div class="dictionary__word">{{ word }}</div>
 
         <div v-if="loading">Loading...</div>
@@ -8,12 +13,12 @@
             <div 
                 v-for="(words, key) in translations"
                 :key="key"    
-            >
+            >   
                 <div class="dictionary__key">{{ key }}</div>
                 <div>{{ words.join(' ● ') }}</div>
             </div>
         </div>
-    </div>
+    </modal>
 </template>
 
 <script>
@@ -31,24 +36,37 @@ export default {
     data() {
         return {
             translations: {},
-            loading: true
+            loading: false
         }
     },
-    async mounted() {
-        const { data } = await get(process.env.VUE_APP_NOW_API_URL + `/translate/${ this.word }`)
-        this.loading = false
+    mounted() {
+        if (! this.word) return
 
-        this.translations = data
+        this.fetchTranslations()    
     },
-    methods: { isEmpty }
+    methods: { 
+        isEmpty,
+        async fetchTranslations() {
+            this.loading = true
+            const { data } = await get(process.env.VUE_APP_NOW_API_URL + `/translate/${ this.word }`)
+            this.loading = false
+
+            this.translations = data
+        }
+    },
+    watch: {
+        word() {
+            this.fetchTranslations()
+        }
+    }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .dictionary {
-        text-align: center;
-        max-width: 768px;
+        background: #fff;
         padding: 1em;
+        overflow: auto !important;
 
         &__word {
             font: {
@@ -66,6 +84,10 @@ export default {
 
         &__translations > :not(:first-child) {
             padding-top: 1em;
-        }   
+        }
+
+        & * {
+            text-align: center;
+        }
     }
 </style>
