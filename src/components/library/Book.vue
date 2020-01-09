@@ -29,11 +29,7 @@ export default {
         }
     },
     mounted() {    
-        if (this.src.includes('pdf')) {
-            this.thumbnail = this.src.replace('pdf', 'jpg')
-        } else {
-            this.thumbnail = this.src.replace('epub', 'jpg')
-        }     
+        this.thumbnail = this.src.replace('epub', 'jpg')
     }
 }
 </script>

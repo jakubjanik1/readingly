@@ -2,18 +2,8 @@ import { shallowMount } from '@vue/test-utils'
 import Book from '@/components/library/Book'
 
 describe('Book', () => {
-    it('shows book thumbnail image when it is a epub file', async () => {
+    it('shows book thumbnail', async () => {
         const wrapper = mountBook('path/to/book.epub')
-        await wrapper.vm.$nextTick()
-
-        const thumbnail = wrapper.find('img.book__thumbnail')
-
-        expect(thumbnail.exists()).toBe(true)
-        expect(thumbnail.attributes('src')).toBe('path/to/book.jpg')
-    })
-
-    it('shows book thumbnail image when it is a pdf file', async () => {
-        const wrapper = mountBook('path/to/book.pdf')
         await wrapper.vm.$nextTick()
 
         const thumbnail = wrapper.find('img.book__thumbnail')

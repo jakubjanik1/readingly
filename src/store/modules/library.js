@@ -33,7 +33,7 @@ export default {
             commit('pushBook', bookUrl)
         },
         async getBooks({ commit }) {
-            const books = await getFiles(/.*\.(pdf|epub)/)
+            const books = await getFiles(/.*\.epub/)
 
             commit('setBooks', books)
         }

@@ -5,14 +5,14 @@ import { isUuid } from 'uuidv4'
 storage.child = jest.fn(path => storage)
 storage.put = jest.fn(file => Promise.resolve({ 
     ref: {
-        getDownloadURL: jest.fn(() => Promise.resolve('path/to/file.pdf'))
+        getDownloadURL: jest.fn(() => Promise.resolve('path/to/file.epub'))
     }
 }))
 
 storage.listAll = jest.fn(() => Promise.resolve({
     items: [{ 
-            name: 'file1.pdf', 
-            getDownloadURL: () => Promise.resolve('path/to/file1.pdf'), 
+            name: 'file1.epub', 
+            getDownloadURL: () => Promise.resolve('path/to/file1.epub'), 
             getMetadata: () => Promise.resolve({ timeCreated: new Date() - 60 })
         }, { 
             name: 'file2.jpg', 
@@ -29,13 +29,13 @@ storage.listAll = jest.fn(() => Promise.resolve({
 describe('Firebase Storage', () => {
     describe('uploadFile', () => {
         it('should works when file is passed', async () => {
-            const file = new File([], 'book.pdf', { type: 'application/pdf' })
+            const file = new File([], 'book.epub', { type: 'application/epub+zip' })
 
             const path = await uploadFile(file)
 
             expect(isUuid(storage.child.mock.calls[0][0])).toBe(true)
             expect(storage.put).toHaveBeenCalledWith(file)
-            expect(path).toEqual('path/to/file.pdf')
+            expect(path).toEqual('path/to/file.epub')
         })
 
         it('should throws an error when not file is passed', async () => {
@@ -51,7 +51,7 @@ describe('Firebase Storage', () => {
 
             expect(storage.child).toHaveBeenCalled()
             expect(storage.listAll).toHaveBeenCalled()
-            expect(files).toEqual(['path/to/file2.jpg', 'path/to/file1.pdf', 'path/to/file3.jpg'])
+            expect(files).toEqual(['path/to/file2.jpg', 'path/to/file1.epub', 'path/to/file3.jpg'])
         })
 
         it('gets all files matching the pattern', async () => {

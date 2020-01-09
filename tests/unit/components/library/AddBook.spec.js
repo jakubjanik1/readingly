@@ -16,15 +16,6 @@ describe('AddBook', () => {
         wrapper.trigger('click')   
     })
 
-    it('broadcasts file when a pdf format is chosen', () => {
-        wrapper.trigger('click')
-        
-        const file = chooseFile('book.pdf', 'application/pdf')
-
-        expect(wrapper.emitted().change).toBeTruthy()
-        expect(wrapper.emitted().change[0]).toEqual([file])
-    })
-
     it('broadcasts file when a epub format is chosen', () => {
         wrapper.trigger('click')
         

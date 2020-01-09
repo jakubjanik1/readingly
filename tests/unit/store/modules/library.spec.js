@@ -4,7 +4,7 @@ import { createThumbnail } from '@/services/book.service'
 
 jest.mock('@/firebase/storage', () => ({
     uploadFile: jest.fn(() => Promise.resolve('path/to/book')),
-    getFiles: jest.fn(() => Promise.resolve(['path/to/book1.pdf', 'path/to/book2.epub', 'path/to/book3.pdf']))
+    getFiles: jest.fn(() => Promise.resolve(['path/to/book1.epub', 'path/to/book2.epub']))
 }))
 
 jest.mock('@/services/book.service', () => ({
@@ -54,7 +54,7 @@ describe('Store - library', () => {
         })
 
         it('addBook uploads and pushes book', async () => {
-            const book = new File([], 'book.pdf', { type: 'application/pdf' })
+            const book = new File([], 'book.epub', { type: 'application/epub+zip' })
 
             await library.actions.addBook({ commit }, book)
 
@@ -68,8 +68,8 @@ describe('Store - library', () => {
         it('getBooks fetches books', async () => {
             await library.actions.getBooks({ commit })
 
-            expect(getFiles).toHaveBeenCalledWith(/.*\.(pdf|epub)/)
-            expect(commit).toHaveBeenCalledWith('setBooks', ['path/to/book1.pdf', 'path/to/book2.epub', 'path/to/book3.pdf'])
+            expect(getFiles).toHaveBeenCalledWith(/.*\.epub/)
+            expect(commit).toHaveBeenCalledWith('setBooks', ['path/to/book1.epub', 'path/to/book2.epub'])
         })
     })
 })

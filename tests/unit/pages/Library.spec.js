@@ -39,7 +39,7 @@ describe('Library', () => {
     it('call addBook action when received "change" from AddBook', () => {
         const addBook = wrapper.find({ name: 'AddBook' })
 
-        const file = new File([], 'book.pdf', { type: 'application/pdf' })
+        const file = new File([], 'book.epub', { type: 'application/epub+zip' })
 
         addBook.vm.$emit('change', file)
 

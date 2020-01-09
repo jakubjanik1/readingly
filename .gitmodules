@@ -1,3 +1,0 @@
-[submodule "ghostscript"]
-	path = functions/firebase/ghostscript
-	url = https://github.com/sina-masnadi/lambda-ghostscript.git
