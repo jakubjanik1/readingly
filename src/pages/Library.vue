@@ -50,7 +50,8 @@ export default {
 <style lang="scss" scoped>
     .library {
         background: #f9f9f9;
-        height: 100vh;
+        min-height: 100vh;
+        height: 100%;
         box-sizing: border-box;
         padding: 1.1em;
         font: {
