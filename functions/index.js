@@ -8,7 +8,9 @@ const app = express()
 app.use(cors({ origin: true }))
 
 app.get('/translate/:word', async (req, res) => {
-    const { word } = req.params
+    let { word } = req.params
+    word = word.replace(/[^A-Za-z-']/g, '')
+    word = encodeURI(word)
     
     const { data } = await get(`https://en.bab.la/dictionary/english-polish/${ word }`)
     const $ = cheerio.load(data)
