@@ -1,8 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import Dictionary from '@/components/reader/Dictionary'
 import moxios from 'moxios'
-import Vue from 'vue'
-Vue.config.ignoredElements = ['modal']
 
 describe('Dictionary', () => {
     beforeEach(() => moxios.install())

@@ -1,10 +1,5 @@
 <template>
-    <modal 
-        classes="dictionary" 
-        name="dictionary" 
-        :adaptive="true" 
-        :min-height="200"
-    >
+    <div class="dictionary">
         <div class="dictionary__word">{{ word }}</div>
 
         <div v-if="loading">Loading...</div>
@@ -18,7 +13,7 @@
                 <div>{{ words.join(' ● ') }}</div>
             </div>
         </div>
-    </modal>
+    </div>
 </template>
 
 <script>

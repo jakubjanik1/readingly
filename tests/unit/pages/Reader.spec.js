@@ -1,5 +1,9 @@
 import { shallowMount } from '@vue/test-utils'
 import Reader from '@/pages/Reader'
+import Vue from 'vue'
+import VueSlideoutPanel from 'vue2-slideout-panel'
+ 
+Vue.use(VueSlideoutPanel)
 
 describe('Reader', () => {
     it('shows EpubViewer with correct prop', async () => {
@@ -14,14 +18,15 @@ describe('Reader', () => {
 
     it('shows Dictionary when EpubViewer emits "text-select" event', async () => {
         const wrapper = mountReader('book.epub')
-        const dictionary = wrapper.find({ name: 'Dictionary' })
-
-        expect(dictionary.props('word')).toBe('')
 
         wrapper.find({ name: 'EpubViewer' }).vm.$emit('text-select', 'mutter')
 
-        expect(wrapper.vm.$modal.show).toHaveBeenCalledWith('dictionary')
-        expect(dictionary.props('word')).toBe('mutter')
+        expect(wrapper.vm.$showPanel).toHaveBeenCalledWith(
+            expect.objectContaining({
+                component: 'Dictionary',
+                props: { word: 'mutter' } 
+            })
+        )
     })
 
     function mountReader(book) {
@@ -30,9 +35,7 @@ describe('Reader', () => {
                 $route: {
                     params: { book }
                 },
-                $modal: {
-                    show: jest.fn()
-                }
+                $showPanel: jest.fn()
             }
         })
     }

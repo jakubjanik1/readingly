@@ -2,9 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
-import VModal from 'vue-js-modal'
+import VueSlideoutPanel from 'vue2-slideout-panel'
  
-Vue.use(VModal, { dynamic: true })
+Vue.use(VueSlideoutPanel)
 
 Vue.config.productionTip = false
 

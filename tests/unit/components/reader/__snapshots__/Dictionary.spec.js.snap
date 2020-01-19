@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dictionary shows translations when are available 1`] = `
-<modal classes="dictionary" name="dictionary" adaptive="true" min-height="200">
+<div class="dictionary">
   <div class="dictionary__word">mutter</div>
   <div class="dictionary__translations">
     <div>
@@ -13,5 +13,5 @@ exports[`Dictionary shows translations when are available 1`] = `
       <div>szemrać ● mamrotać ● przebąkiwać ● mruknąć</div>
     </div>
   </div>
-</modal>
+</div>
 `;
