@@ -1,6 +1,7 @@
 <template>
     <div class="reader">
         <ReturnToLibrary />
+        <OpenSettings />
 
         <EpubViewer :src="book" @text-select="openDictionary" />
 
@@ -12,6 +13,7 @@
 import ReturnToLibrary from '@/components/reader/ReturnToLibrary'
 import EpubViewer from '@/components/reader/EpubViewer'
 import Dictionary from '@/components/reader/Dictionary'
+import OpenSettings from '@/components/reader/OpenSettings'
 import Vue from 'vue'
 
 Vue.component('Dictionary', Dictionary)
@@ -20,6 +22,7 @@ export default {
     name: 'Reader',
     components: {
         ReturnToLibrary,
+        OpenSettings,
         EpubViewer
     },
     data() {
