@@ -1,7 +1,7 @@
 <template>
     <div class="reader">
         <ReturnToLibrary />
-        <OpenSettings />
+        <OpenSettings @click="openSettings" />
 
         <EpubViewer :src="book" @text-select="openDictionary" />
 
@@ -13,10 +13,12 @@
 import ReturnToLibrary from '@/components/reader/ReturnToLibrary'
 import EpubViewer from '@/components/reader/EpubViewer'
 import Dictionary from '@/components/reader/Dictionary'
+import Settings from '@/components/reader/Settings'
 import OpenSettings from '@/components/reader/OpenSettings'
 import Vue from 'vue'
 
 Vue.component('Dictionary', Dictionary)
+Vue.component('Settings', Settings)
 
 export default {
     name: 'Reader',
@@ -32,11 +34,17 @@ export default {
     },
     methods: {
         openDictionary(word) {
+            this.showPanel('Dictionary', { word })
+        },
+        openSettings() {
+            this.showPanel('Settings')
+        },
+        showPanel(component, props) {
             this.$showPanel({ 
-                component: 'Dictionary', 
+                component,
+                props,
                 openOn: 'bottom',
-                height: '400', 
-                props: { word }
+                height: '400'
             })
         }
     }

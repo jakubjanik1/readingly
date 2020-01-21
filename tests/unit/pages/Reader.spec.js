@@ -16,7 +16,7 @@ describe('Reader', () => {
         expect(epubViewer.props('src')).toBe(process.env.VUE_APP_FIREBASE_STORAGE_URL.replace('@', 'book.epub'))
     })
 
-    it('shows Dictionary when EpubViewer emits "text-select" event', async () => {
+    it('opens Dictionary when EpubViewer emits "text-select" event', async () => {
         const wrapper = mountReader('book.epub')
 
         wrapper.find({ name: 'EpubViewer' }).vm.$emit('text-select', 'mutter')
@@ -25,6 +25,18 @@ describe('Reader', () => {
             expect.objectContaining({
                 component: 'Dictionary',
                 props: { word: 'mutter' } 
+            })
+        )
+    })
+
+    it('opens Settings when OpenSettings component is clicked', () => {
+        const wrapper = mountReader('book.epub')
+
+        wrapper.find({ name: 'OpenSettings' }).vm.$emit('click')
+
+        expect(wrapper.vm.$showPanel).toHaveBeenCalledWith(
+            expect.objectContaining({
+                component: 'Settings'
             })
         )
     })
