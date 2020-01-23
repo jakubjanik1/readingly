@@ -16,6 +16,7 @@
     "uuidv4": "^6.0.0",
     "vue": "^2.6.10",
     "vue-material-design-icons": "^4.1.0",
+    "vue-range-slider": "^0.6.0",
     "vue-router": "^3.0.6",
     "vue-spinner": "^1.0.3",
     "vue2-slideout-panel": "^2.8.0",
@@ -26,6 +27,7 @@
     "@vue/cli-plugin-unit-jest": "^4.0.0",
     "@vue/cli-service": "^4.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
+    "jest-css-modules": "^2.1.0",
     "moxios": "^0.4.0",
     "nock": "^11.7.0",
     "sass": "^1.19.0",
@@ -36,7 +38,10 @@
     "preset": "@vue/cli-plugin-unit-jest",
     "transformIgnorePatterns": [
       "/node_modules/(?!vue-material-design-icons|vue-spinner)"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.css$": "<rootDir>/node_modules/jest-css-modules"
+    }
   },
   "postcss": {
     "plugins": {
