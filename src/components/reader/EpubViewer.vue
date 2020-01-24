@@ -4,6 +4,7 @@
 
 <script>
 import { Book } from 'epubjs'
+import { mapState } from 'vuex'
 
 export default {
     name: 'EpubViewer',
@@ -13,23 +14,34 @@ export default {
             required: true
         }
     },
+    data() {
+        return {
+            rendition: null
+        }
+    },
     mounted() {
         const book = new Book(this.src, { openAs: 'epub' })
 
-        const rendition = book.renderTo('epub-viewer', {
+        this.rendition = book.renderTo('epub-viewer', {
             manager: 'continuous',
             flow: 'scrolled',
             width: '100%',
             height: '100%'
         })
 
-        rendition.display()
+        this.rendition.display()
 
-        rendition.on('selected', async cfiRange => {
+        this.rendition.on('selected', async cfiRange => {
             const range = await book.getRange(cfiRange)
             
             this.$emit('text-select', range.toString())
         })
+    },
+    computed: mapState('reader', ['textSize']),
+    watch: {
+        textSize(newTextSize) {
+            this.rendition.themes.fontSize(newTextSize + '%')
+        }
     }
 }
 </script>
