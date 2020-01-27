@@ -1,6 +1,9 @@
 <template>
     <div class="dictionary">
-        <div class="dictionary__word">{{ word }}</div>
+        <div class="dictionary__word">
+            <div>{{ word }}</div>
+            <SpeakIcon class="dictionary__speak" @click="speak" />
+        </div>
 
         <div v-if="loading">Loading...</div>
         <div v-else-if="isEmpty(translations)">We cannot find translations of this word</div>
@@ -19,9 +22,11 @@
 <script>
 import { get } from 'axios'
 import { isEmpty } from 'lodash'
+import SpeakIcon from 'vue-material-design-icons/VolumeHigh'
 
 export default {
     name: 'Dictionary',
+    components: { SpeakIcon },
     props: {
         word: {
             type: String,
@@ -47,6 +52,10 @@ export default {
             this.loading = false
 
             this.translations = data
+        },
+        speak() {
+            const msg = new SpeechSynthesisUtterance(this.word)
+            speechSynthesis.speak(msg)
         }
     },
     watch: {
@@ -71,6 +80,16 @@ export default {
             color: #ff7315;
             text-transform: uppercase;
             padding-bottom: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &__speak {
+            color: #000;
+            height: 24px;
+            margin-left: 8px;
+            cursor: pointer;
         }
 
         &__key {

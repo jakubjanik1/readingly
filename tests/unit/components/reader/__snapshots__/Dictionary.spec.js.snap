@@ -2,7 +2,10 @@
 
 exports[`Dictionary shows translations when are available 1`] = `
 <div class="dictionary">
-  <div class="dictionary__word">mutter</div>
+  <div class="dictionary__word">
+    <div>mutter</div>
+    <speakicon-stub title="Volume High icon" fillcolor="currentColor" size="24" class="dictionary__speak"></speakicon-stub>
+  </div>
   <div class="dictionary__translations">
     <div>
       <div class="dictionary__key">mutter {noun}</div>
