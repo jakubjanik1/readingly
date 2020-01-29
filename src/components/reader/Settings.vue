@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <div>Settings</div>
-    
+  <div class="settings">
     <TextSizeSlider 
-      :value="textSize"
-      min="100"
-      max="200"
+      class="settings__text-size"
+      :value="textSize" 
+      :min="100"
+      :max="200" 
+      tooltip="none"
+      dotSize="22"
+      :height="6"
       @change="setTextSize($event)"
     />
   </div>
@@ -13,8 +15,7 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
-import TextSizeSlider from 'vue-range-slider'
-import 'vue-range-slider/dist/vue-range-slider.css'
+import TextSizeSlider from 'vue-slider-component'
 
 export default {
     name: 'Settings',
@@ -25,3 +26,16 @@ export default {
     methods: mapMutations('reader', ['setTextSize'])
 }
 </script>
+
+<style lang="scss">
+ .settings {
+   &__text-size {
+     margin: 32px;
+   }
+ }
+
+  $themeColor: #000;
+  $dotShadowFocus: 0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.32);
+
+  @import '~vue-slider-component/lib/theme/default.scss';
+</style>

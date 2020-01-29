@@ -16,8 +16,8 @@
     "uuidv4": "^6.0.0",
     "vue": "^2.6.10",
     "vue-material-design-icons": "^4.1.0",
-    "vue-range-slider": "^0.6.0",
     "vue-router": "^3.0.6",
+    "vue-slider-component": "^3.1.0",
     "vue-spinner": "^1.0.3",
     "vue2-slideout-panel": "^2.8.0",
     "vuex": "^3.0.1"
