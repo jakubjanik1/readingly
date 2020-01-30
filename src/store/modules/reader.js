@@ -9,7 +9,7 @@ export default {
 
     mutations: {
         setTextSize(state, newTextSize) {
-            if (inRange(newTextSize, 100, 200)) {
+            if (inRange(newTextSize, 100, 200 + 1)) {
                 state.textSize = newTextSize
             }
         }

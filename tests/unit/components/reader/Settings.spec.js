@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Settings from '@/components/reader/Settings'
-import TextSizeSlider from 'vue-range-slider'
+import TextSizeSlider from 'vue-slider-component'
 import Vuex from 'vuex'
 import reader from '@/store/modules/reader'
 

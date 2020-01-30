@@ -29,6 +29,7 @@ export default {
             height: '100%'
         })
 
+        this.rendition.themes.fontSize(this.textSize + '%')
         this.rendition.display()
 
         this.rendition.on('selected', async cfiRange => {
