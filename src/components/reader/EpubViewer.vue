@@ -49,6 +49,6 @@ export default {
 
 <style>
     #epub-viewer {
-        height: calc(100vh - 28px);
+        height: calc(100vh - 32px);
     }
 </style>

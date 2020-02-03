@@ -17,7 +17,7 @@ export default {
 
 <style lang="scss" scoped>
     .open-settings {
-        width: 1.3em;
+        height: 24px;
         cursor: pointer;
     }
 </style>

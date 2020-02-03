@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss" scoped>
     .return-to-library {
-        width: 1.3em;
+        height: 24px;
         cursor: pointer;
     }
 </style>

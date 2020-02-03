@@ -1,7 +1,9 @@
 <template>
     <div class="reader">
-        <ReturnToLibrary />
-        <OpenSettings @click="openSettings" />
+        <div class="reader__toolbar">
+            <ReturnToLibrary />
+            <OpenSettings @click="openSettings" />
+        </div>
 
         <EpubViewer :src="book" @text-select="openDictionary" />
 
@@ -50,3 +52,16 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    .reader {
+        &__toolbar {
+            padding: 0 1em;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+        }
+    }
+</style>
