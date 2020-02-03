@@ -21,5 +21,17 @@ describe('Store - reader', () => {
             reader.mutations.setTextSize(state, 50)
             expect(state.textSize).toEqual(100)
         })
+
+        it('setTheme sets new theme when param is in the proper set', () => {
+            reader.mutations.setTheme(state, 'dark')
+
+            expect(state.theme).toEqual('dark')
+        })
+
+        it('setTheme does not set new theme when param is not in the proper set', () => {
+            reader.mutations.setTheme(state, 'green')
+
+            expect(state.theme).toEqual(reader.state.theme)  
+        })
     })
 })
