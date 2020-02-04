@@ -23,9 +23,9 @@ describe('Store - reader', () => {
         })
 
         it('setTheme sets new theme when param is in the proper set', () => {
-            reader.mutations.setTheme(state, 'dark')
+            reader.mutations.setTheme(state, 'black')
 
-            expect(state.theme).toEqual('dark')
+            expect(state.theme).toEqual('black')
         })
 
         it('setTheme does not set new theme when param is not in the proper set', () => {

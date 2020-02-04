@@ -5,7 +5,7 @@ export default {
 
     state: {
         textSize: 100,
-        theme: 'light'
+        theme: 'white'
     },
 
     mutations: {
@@ -16,7 +16,7 @@ export default {
         },
 
         setTheme(state, newTheme) {
-            const availableThemes = ['light', 'dark', 'sepia']
+            const availableThemes = ['white', 'black', 'sepia']
             if (availableThemes.includes(newTheme)) {
                 state.theme = newTheme
             }
