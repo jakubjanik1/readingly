@@ -29,7 +29,12 @@ export default {
             height: '100%'
         })
 
+        this.rendition.themes.register('white', { body: { background: '#fff', color: '#333' }})
+        this.rendition.themes.register('black', { body: { background: '#333', color: '#e7e7e7' }})
+        this.rendition.themes.register('sepia', { body: { background: '#bfb79d', color: '#e7e7e7' }})
+
         this.rendition.themes.fontSize(this.textSize + '%')
+        this.rendition.themes.select(this.theme)
         this.rendition.display()
 
         this.rendition.on('selected', async cfiRange => {
@@ -38,10 +43,13 @@ export default {
             this.$emit('text-select', range.toString())
         })
     },
-    computed: mapState('reader', ['textSize']),
+    computed: mapState('reader', ['textSize', 'theme']),
     watch: {
         textSize(newTextSize) {
             this.rendition.themes.fontSize(newTextSize + '%')
+        },
+        theme(newTheme) {
+            this.rendition.themes.select(newTheme)
         }
     }
 }
