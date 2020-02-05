@@ -24,8 +24,9 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
+            box-sizing: border-box;
             border-radius: 1.2em;
-            width: 100px;
+            width: 90px;
             height: 40px;
             font-weight: 500;
 
@@ -43,6 +44,11 @@ export default {
             &[theme=sepia] {
                 color: #e7e7e7;
                 background: #bfb79d;
+            }
+
+            &:hover {
+                cursor: pointer;
+                filter: brightness(95%);
             }
         }
     }

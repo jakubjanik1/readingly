@@ -38,7 +38,6 @@ export default {
 
 <style lang="scss">
     .text-size-slider {
-        margin: 24px;
         display: grid;
         grid-template-columns: 24px auto 24px;
         grid-template-rows: 24px;
