@@ -33,7 +33,7 @@ export default {
         this.rendition.themes.register('black', { body: { background: '#333', color: '#e7e7e7' }})
         this.rendition.themes.register('sepia', { body: { background: '#bfb79d', color: '#e7e7e7' }})
 
-        this.rendition.themes.fontSize(this.textSize + '%')
+        this.rendition.themes.fontSize(this.fontSize + '%')
         this.rendition.themes.select(this.theme)
         this.rendition.display()
 
@@ -43,10 +43,10 @@ export default {
             this.$emit('text-select', range.toString())
         })
     },
-    computed: mapState('reader', ['textSize', 'theme']),
+    computed: mapState('reader', ['fontSize', 'theme']),
     watch: {
-        textSize(newTextSize) {
-            this.rendition.themes.fontSize(newTextSize + '%')
+        fontSize(newFontSize) {
+            this.rendition.themes.fontSize(newFontSize + '%')
         },
         theme(newTheme) {
             this.rendition.themes.select(newTheme)

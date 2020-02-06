@@ -8,18 +8,18 @@ describe('Store - reader', () => {
             state = { ...reader.state }
         })
 
-        it('setTextSize sets new textSize when param is in the proper range', () => {
-            reader.mutations.setTextSize(state, 150)
+        it('setFontSize sets new fontSize when param is in the proper range', () => {
+            reader.mutations.setFontSize(state, 150)
 
-            expect(state.textSize).toEqual(150)
+            expect(state.fontSize).toEqual(150)
         })
 
-        it('setTextSize does not set new textSize when param is not in the proper range', () => {
-            reader.mutations.setTextSize(state, 220)
-            expect(state.textSize).toEqual(100)
+        it('setFontSize does not set new fontSize when param is not in the proper range', () => {
+            reader.mutations.setFontSize(state, 220)
+            expect(state.fontSize).toEqual(100)
 
-            reader.mutations.setTextSize(state, 50)
-            expect(state.textSize).toEqual(100)
+            reader.mutations.setFontSize(state, 50)
+            expect(state.fontSize).toEqual(100)
         })
 
         it('setTheme sets new theme when param is in the proper set', () => {

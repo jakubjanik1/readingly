@@ -1,9 +1,9 @@
 <template>
-    <div class="text-size-slider">
+    <div class="font-size-slider">
       <FontDecreaseIcon />
 
       <Slider   
-        :value="textSize" 
+        :value="fontSize" 
         :min="100"
         :max="200" 
         tooltip="none"
@@ -11,7 +11,7 @@
         :height="3"
         width="100%"
         :dotStyle="{ border: '2px solid' }"
-        @change="setTextSize($event)"
+        @change="setFontSize($event)"
       />
 
       <FontIncreaseIcon />
@@ -25,19 +25,19 @@ import FontIncreaseIcon from 'vue-material-design-icons/FormatFontSizeIncrease'
 import FontDecreaseIcon from 'vue-material-design-icons/FormatFontSizeDecrease'
 
 export default {
-    name: 'TextSizeSlider',
+    name: 'FontSizeSlider',
     components: {
       Slider,
       FontIncreaseIcon,
       FontDecreaseIcon
     },
-    computed: mapState('reader', ['textSize']),
-    methods: mapMutations('reader', ['setTextSize'])
+    computed: mapState('reader', ['fontSize']),
+    methods: mapMutations('reader', ['setFontSize'])
 }
 </script>
 
 <style lang="scss">
-    .text-size-slider {
+    .font-size-slider {
         display: grid;
         grid-template-columns: 24px auto 24px;
         grid-template-rows: 24px;

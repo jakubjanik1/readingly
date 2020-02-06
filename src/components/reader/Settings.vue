@@ -1,18 +1,18 @@
 <template>
   <div class="settings">
-    <TextSizeSlider />
+    <FontSizeSlider />
     <ThemePicker />
   </div>
 </template>
 
 <script>
-import TextSizeSlider from './TextSizeSlider'
+import FontSizeSlider from './FontSizeSlider'
 import ThemePicker from './ThemePicker'
 
 export default {
   name: 'Settings',
   components: {
-    TextSizeSlider,
+    FontSizeSlider,
     ThemePicker
   }
 }

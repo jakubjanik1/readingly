@@ -4,14 +4,14 @@ export default {
     namespaced: true,
 
     state: {
-        textSize: 100,
+        fontSize: 100,
         theme: 'white'
     },
 
     mutations: {
-        setTextSize(state, newTextSize) {
-            if (inRange(newTextSize, 100, 200 + 1)) {
-                state.textSize = newTextSize
+        setFontSize(state, newFontSize) {
+            if (inRange(newFontSize, 100, 200 + 1)) {
+                state.fontSize = newFontSize
             }
         },
 
