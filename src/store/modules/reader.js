@@ -5,7 +5,8 @@ export default {
 
     state: {
         fontSize: 100,
-        theme: 'white'
+        theme: 'white',
+        brightness: 100
     },
 
     mutations: {
@@ -19,6 +20,12 @@ export default {
             const availableThemes = ['white', 'black', 'sepia']
             if (availableThemes.includes(newTheme)) {
                 state.theme = newTheme
+            }
+        },
+
+        setBrightness(state, newBrightness) {
+            if (inRange(newBrightness, 20, 100 + 1)) {
+                state.brightness = newBrightness
             }
         }
     }

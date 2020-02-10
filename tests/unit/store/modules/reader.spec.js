@@ -33,5 +33,19 @@ describe('Store - reader', () => {
 
             expect(state.theme).toEqual(reader.state.theme)  
         })
+
+        it('setBrightness sets new brightness when param is in the proper range', () => {
+            reader.mutations.setBrightness(state, 65)
+
+            expect(state.brightness).toEqual(65)
+        })
+
+        it('setBrightness does not set new brightness when param is not in the proper range', () => {
+            reader.mutations.setBrightness(state, 10)
+            expect(state.brightness).toEqual(reader.state.brightness)
+
+            reader.mutations.setBrightness(state, 120)
+            expect(state.brightness).toEqual(reader.state.brightness)
+        })
     })
 })
