@@ -25,7 +25,7 @@ import BrightnessDecrease from 'vue-material-design-icons/LightbulbOnOutline'
 import BrightnessIcrease from 'vue-material-design-icons/LightbulbOn'
 
 export default {
-    name: 'FontSizeSlider',
+    name: 'BrightnessSlider',
     components: {
       Slider,
       BrightnessDecrease,
