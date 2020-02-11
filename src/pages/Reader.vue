@@ -1,5 +1,5 @@
 <template>
-    <div class="reader">
+    <Wrapper class="reader" :brightness="brightness">
         <div class="reader__toolbar">
             <ReturnToLibrary />
             <OpenSettings @click="openSettings" />
@@ -8,7 +8,7 @@
         <EpubViewer :src="book" @text-select="openDictionary" />
 
         <slideout-panel />
-    </div>
+    </Wrapper>
 </template>
 
 <script>
@@ -18,6 +18,12 @@ import Dictionary from '@/components/reader/Dictionary'
 import Settings from '@/components/reader/Settings'
 import OpenSettings from '@/components/reader/OpenSettings'
 import Vue from 'vue'
+import { mapState } from 'vuex'
+import styled from 'vue-styled-components'
+
+const Wrapper = styled('div', { brightness: Number })`
+    filter: brightness(${ props => props.brightness }%);
+`
 
 Vue.component('Dictionary', Dictionary)
 Vue.component('Settings', Settings)
@@ -25,6 +31,7 @@ Vue.component('Settings', Settings)
 export default {
     name: 'Reader',
     components: {
+        Wrapper,
         ReturnToLibrary,
         OpenSettings,
         EpubViewer
@@ -34,6 +41,7 @@ export default {
             book: process.env.VUE_APP_FIREBASE_STORAGE_URL.replace('@', this.$route.params.book)
         }
     },
+    computed: mapState('reader', ['brightness']),
     methods: {
         openDictionary(word) {
             this.showPanel('Dictionary', { word })
