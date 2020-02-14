@@ -1,26 +1,23 @@
 <template>
-    <div class="brightness-slider">
+  <Slider 
+    :value="brightness" 
+    :min="20"
+    :max="100" 
+    @change="setBrightness($event)"
+  >
+    <template v-slot:left-label>
       <BrightnessDecrease />
+    </template>
 
-      <Slider   
-        :value="brightness" 
-        :min="20"
-        :max="100" 
-        tooltip="none"
-        dotSize="22"
-        :height="3"
-        width="100%"
-        :dotStyle="{ border: '2px solid' }"
-        @change="setBrightness($event)"
-      />
-
+    <template v-slot:right-label>
       <BrightnessIcrease />
-    </div>
+    </template>
+  </Slider>
 </template>
 
 <script>
 import { mapMutations, mapState } from 'vuex'
-import Slider from 'vue-slider-component'
+import Slider from '../ui/Slider'
 import BrightnessDecrease from 'vue-material-design-icons/LightbulbOnOutline'
 import BrightnessIcrease from 'vue-material-design-icons/LightbulbOn'
 
@@ -35,18 +32,3 @@ export default {
     methods: mapMutations('reader', ['setBrightness'])
 }
 </script>
-
-<style lang="scss">
-    .brightness-slider {
-        display: grid;
-        grid-template-columns: 24px auto 24px;
-        grid-template-rows: 24px;
-        grid-column-gap: 24px;   
-    }
-
-    $themeColor: #000;
-    $dotShadow: none;
-    $dotShadowFocus: none;
-
-    @import '~vue-slider-component/lib/theme/default.scss';
-</style>
