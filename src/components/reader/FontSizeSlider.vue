@@ -5,13 +5,8 @@
     :max="200" 
     @change="setFontSize($event)"
   >
-    <template v-slot:left-label>
-      <FontDecreaseIcon />
-    </template>
-
-    <template v-slot:right-label>
-      <FontIncreaseIcon />
-    </template>
+    <FontDecreaseIcon slot="left-label" />
+    <FontIncreaseIcon slot="right-label" />
   </Slider>
 </template>
 
