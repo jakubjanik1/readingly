@@ -8,8 +8,8 @@ const app = express()
 app.use(cors({ origin: true }))
 
 app.get('/translate/:word', async (req, res) => {
-    let { word } = req.params
-    word = word.replace(/[^A-Za-z-']/g, '')
+    let { word } = req.params   
+    word = word.replace(/[^A-Za-z- ']/g, '')
     word = encodeURI(word)
     
     const { data } = await get(`https://en.bab.la/dictionary/english-polish/${ word }`)
