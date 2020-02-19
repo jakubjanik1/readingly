@@ -64,12 +64,12 @@ export default {
 <style lang="scss" scoped>
     .reader {
         &__toolbar {
+            background: #f9f9f9;
             padding: 0 1em;
             height: 32px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
         }
     }
 </style>
