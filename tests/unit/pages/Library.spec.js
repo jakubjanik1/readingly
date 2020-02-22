@@ -16,7 +16,7 @@ library.state =  {
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
-describe('Library', () => {
+describe('<Library />', () => {
     let wrapper
 
     beforeEach(() => {

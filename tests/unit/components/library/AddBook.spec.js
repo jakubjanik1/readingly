@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils'
 import AddBook from '@/components/library/AddBook'
 
-describe('AddBook', () => {
+describe('<AddBook />', () => {
     let wrapper
 
     beforeEach(() => {

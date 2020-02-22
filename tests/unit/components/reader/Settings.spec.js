@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils'
 import Settings from '@/components/reader/Settings'
 
-describe('Settings', () => {
+describe('<Settings />', () => {
     let wrapper
 
     beforeEach(() => {

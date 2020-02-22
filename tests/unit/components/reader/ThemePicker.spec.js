@@ -8,7 +8,7 @@ jest.mock('@/store/modules/reader')
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
-describe('ThemePicker', () => {
+describe('<ThemePicker />', () => {
     let wrapper
 
     beforeEach(() => {

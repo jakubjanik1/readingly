@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dictionary shows translations when are available 1`] = `
+exports[`<Dictionary /> shows translations when are available 1`] = `
 <div class="dictionary">
   <div class="dictionary__word">
     <div>mutter</div>

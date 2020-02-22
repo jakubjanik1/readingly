@@ -11,7 +11,7 @@ reader.state = {
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
-describe('BrightnessSlider', () => {
+describe('<BrightnessSlider />', () => {
     let wrapper
 
     beforeEach(() => {

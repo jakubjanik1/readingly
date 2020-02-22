@@ -2,7 +2,7 @@ import { shallowMount } from '@vue/test-utils'
 import Dictionary from '@/components/reader/Dictionary'
 import moxios from 'moxios'
 
-describe('Dictionary', () => {
+describe('<Dictionary />', () => {
     beforeEach(() => moxios.install())
     afterAll(() => moxios.uninstall())
 

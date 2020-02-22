@@ -11,7 +11,7 @@ reader.state = {
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
-describe('FontSizeSlider', () => {
+describe('<FontSizeSlider />', () => {
     let wrapper
 
     beforeEach(() => {

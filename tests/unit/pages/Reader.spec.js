@@ -10,7 +10,7 @@ Vue.use(VueSlideoutPanel)
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
-describe('Reader', () => {
+describe('<Reader />', () => {
     let wrapper
 
     beforeEach(() => {

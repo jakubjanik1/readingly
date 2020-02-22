@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils'
 import Book from '@/components/library/Book'
 
-describe('Book', () => {
+describe('<Book />', () => {
     it('shows book thumbnail', async () => {
         const wrapper = mountBook('path/to/book.epub')
         await wrapper.vm.$nextTick()

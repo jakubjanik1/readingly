@@ -2,7 +2,7 @@ import { shallowMount } from '@vue/test-utils'
 import Slider from '@/components/ui/Slider'
 import VueSlider from 'vue-slider-component'
 
-describe('Slider', () => {
+describe('<Slider />', () => {
     let wrapper
 
     beforeEach(() => {
