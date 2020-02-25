@@ -47,5 +47,19 @@ describe('Store - reader', () => {
             reader.mutations.setBrightness(state, 120)
             expect(state.brightness).toEqual(reader.state.brightness)
         })
+
+        it('setProgress sets new progress when param is in the proper range', () => {
+            reader.mutations.setProgress(state, 45)
+
+            expect(state.progress).toEqual(45)
+        })
+
+        it('setProgress does not set new progress when param is not in the proper range', () => {
+            reader.mutations.setProgress(state, -4)
+            expect(state.progress).toEqual(reader.state.progress)
+
+            reader.mutations.setProgress(state, 110)
+            expect(state.progress).toEqual(reader.state.progress)
+        })
     })
 })
