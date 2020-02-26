@@ -66,4 +66,10 @@ describe('<Reader />', () => {
 
         expect(wrapper.attributes('brightness')).toContain(50)
     })
+
+    it('shows ReadingProgress', () => {
+        const readingProgress = wrapper.find({ name: 'ReadingProgress' })
+
+        expect(readingProgress.exists()).toBe(true)
+    })
 })

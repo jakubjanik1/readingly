@@ -8,6 +8,8 @@
         <EpubViewer :src="book" @text-select="openDictionary" />
 
         <slideout-panel />
+
+        <ReadingProgress />
     </Wrapper>
 </template>
 
@@ -17,6 +19,7 @@ import EpubViewer from '@/components/reader/EpubViewer'
 import Dictionary from '@/components/reader/Dictionary'
 import Settings from '@/components/reader/Settings'
 import OpenSettings from '@/components/reader/OpenSettings'
+import ReadingProgress from '@/components/reader/ReadingProgress'
 import Vue from 'vue'
 import { mapState } from 'vuex'
 import styled from 'vue-styled-components'
@@ -34,7 +37,8 @@ export default {
         Wrapper,
         ReturnToLibrary,
         OpenSettings,
-        EpubViewer
+        EpubViewer,
+        ReadingProgress
     },
     data() {
         return {
