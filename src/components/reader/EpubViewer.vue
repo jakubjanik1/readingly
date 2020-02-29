@@ -1,5 +1,5 @@
 <template>
-    <div id="epub-viewer"></div>
+    <div id="epub-viewer" :style="{ height: `calc(${ innerHeight }px - 32px)` }"></div>
 </template>
 
 <script>
@@ -54,7 +54,13 @@ export default {
             this.setProgress(progress * 100)
         })
     },
-    computed: mapState('reader', ['fontSize', 'theme', 'progress']),
+    computed: {
+        ...mapState('reader', ['fontSize', 'theme', 'progress']),
+        innerHeight() {
+            console.log(window)
+            return window.innerHeight
+        }
+    },
     methods: mapMutations('reader', ['setProgress']),
     watch: {
         fontSize(newFontSize) {
@@ -66,9 +72,3 @@ export default {
     }
 }
 </script>
-
-<style>
-    #epub-viewer {
-        height: calc(100vh - 32px);
-    }
-</style>
