@@ -1,5 +1,5 @@
 <template>
-    <div id="epub-viewer" :style="{ height: `calc(${ innerHeight }px - 32px)` }"></div>
+    <div id="epub-viewer" :style="{ height: `calc(${ windowHeight }px - 32px)` }"></div>
 </template>
 
 <script>
@@ -16,10 +16,14 @@ export default {
     },
     data() {
         return {
-            rendition: null
+            rendition: null,
+            windowHeight: 0
         }
     },
     async mounted() {
+        this.windowHeight = window.innerHeight
+        window.onresize = e => this.windowHeight = e.target.innerHeight
+
         const book = new Book(this.src, { openAs: 'epub' })
 
         const rendition = book.renderTo('epub-viewer', {
@@ -55,11 +59,7 @@ export default {
         })
     },
     computed: {
-        ...mapState('reader', ['fontSize', 'theme', 'progress']),
-        innerHeight() {
-            console.log(window)
-            return window.innerHeight
-        }
+        ...mapState('reader', ['fontSize', 'theme', 'progress'])
     },
     methods: mapMutations('reader', ['setProgress']),
     watch: {
