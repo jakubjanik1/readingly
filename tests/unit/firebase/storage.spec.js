@@ -1,4 +1,4 @@
-import { uploadFile, getFiles } from '../../../src/firebase/storage'
+import { uploadFile, getFiles, deleteFile } from '../../../src/firebase/storage'
 import { storage } from '../../../src/firebase'
 import { isUuid } from 'uuidv4'
 
@@ -26,7 +26,13 @@ storage.listAll = jest.fn(() => Promise.resolve({
     ]
 }))
 
+storage.delete = jest.fn(() => Promise.resolve())
+
 describe('Firebase Storage', () => {
+    beforeEach(() => {
+        jest.clearAllMocks()
+    })
+
     describe('uploadFile', () => {
         it('should works when file is passed', async () => {
             const file = new File([], 'book.epub', { type: 'application/epub+zip' })
@@ -61,5 +67,14 @@ describe('Firebase Storage', () => {
             expect(storage.listAll).toHaveBeenCalled()
             expect(files).toEqual(['path/to/file2.jpg', 'path/to/file3.jpg'])
         })
+    })
+
+    describe('deleteFile', () => {
+          it('should works when file is passed', async () => {
+              await deleteFile('book.epub')
+
+              expect(storage.child.mock.calls[0][0]).toBe('book.epub')
+              expect(storage.delete).toHaveBeenCalled()
+          })
     })
 })

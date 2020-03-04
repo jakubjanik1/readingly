@@ -28,3 +28,9 @@ export async function getFiles(pattern) {
 
     return items.map(file => file.url)
 }
+
+export async function deleteFile(file) {
+    const ref = storage.child(file)
+
+    await ref.delete()
+}
