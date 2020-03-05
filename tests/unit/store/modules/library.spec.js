@@ -1,10 +1,11 @@
 import library from '@/store/modules/library'
-import { uploadFile, getFiles } from '@/firebase/storage'
+import { uploadFile, getFiles, deleteFile } from '@/firebase/storage'
 import { createThumbnail } from '@/services/book.service'
 
 jest.mock('@/firebase/storage', () => ({
     uploadFile: jest.fn(() => Promise.resolve('path/to/book')),
-    getFiles: jest.fn(() => Promise.resolve(['path/to/book1.epub', 'path/to/book2.epub']))
+    getFiles: jest.fn(() => Promise.resolve(['path/to/book1.epub', 'path/to/book2.epub'])),
+    deleteFile: jest.fn(() => Promise.resolve())
 }))
 
 jest.mock('@/services/book.service', () => ({
@@ -70,6 +71,18 @@ describe('Store - library', () => {
 
             expect(getFiles).toHaveBeenCalledWith(/.*\.epub/)
             expect(commit).toHaveBeenCalledWith('setBooks', ['path/to/book1.epub', 'path/to/book2.epub'])
+        })
+
+        it('removeBook removes book', async () => {
+            const state = {
+                books: ['path/to/book1.epub', 'path/to/book2.epub']
+            }
+
+            await library.actions.removeBook({ state }, 'book2.epub')
+
+            expect(state.books.includes('book2.epub')).toBe(false)
+            expect(deleteFile).toHaveBeenCalledWith('book2.epub')
+            expect(deleteFile).toHaveBeenCalledWith('book2.jpg')
         })
     })
 })

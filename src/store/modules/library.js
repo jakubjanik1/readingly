@@ -1,4 +1,4 @@
-import { uploadFile, getFiles } from '@/firebase/storage'
+import { uploadFile, getFiles, deleteFile } from '@/firebase/storage'
 import { createThumbnail } from '@/services/book.service'
 
 export default {
@@ -36,6 +36,12 @@ export default {
             const books = await getFiles(/.*\.epub/)
 
             commit('setBooks', books)
+        },
+        async removeBook({ state }, book) {
+            state.books = state.books.filter(bookUrl => !bookUrl.includes(book))
+
+            await deleteFile(book)
+            await deleteFile(book.replace('epub', 'jpg'))
         }
     }
 }
