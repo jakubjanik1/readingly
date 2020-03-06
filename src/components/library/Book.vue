@@ -1,12 +1,29 @@
-<template>
-    <div class="book" @click="openBook">
-        <img class="book__thumbnail" :src="thumbnail" @error="showDefaultThumbnail">
+<template>    
+    <div class="book">
+        <RemoveIcon 
+            class="book__remove" 
+            @click="removeBook(book)" 
+            :size="20" 
+        />
+        
+        <img 
+            class="book__thumbnail"
+            :src="thumbnail"
+            @error="showDefaultThumbnail"
+            @click="openBook"
+        >
     </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import RemoveIcon from 'vue-material-design-icons/Delete'
+
 export default {
     name: 'Book',
+    components: {
+        RemoveIcon
+    },
     props: {
         src: {
             type: String,
@@ -16,12 +33,14 @@ export default {
     },
     data() {
         return {
-            thumbnail: null
+            thumbnail: null,
+            book: /o\/(.*)\?/.exec(this.src)[1]
         }
     },
     methods: {
+        ...mapActions('library', ['removeBook']),
         openBook() {
-            const book = /o\/(.*)\?/.exec(this.src)[1]
+            const { book } = this
             this.$router.push({ name: 'reader', params: { book }})
         },
         showDefaultThumbnail() {
@@ -35,10 +54,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .book, .book__thumbnail {
-        cursor: pointer;
-        width: 120px;
-        height: 192px;
-        border-radius: 4px;
+    .book {
+        position: relative;
+
+        &__remove {
+            color: #fff;
+            border-radius: 50%;
+            padding: 2px;
+            background: #ff7315;
+            position: absolute;
+            right: -5px;
+            top: -5px;
+            display: flex;
+            justify-content: center;
+        }
+
+        &__thumbnail {
+            cursor: pointer;
+            width: 120px;
+            height: 192px;
+            border-radius: 4px;
+        }
     }
 </style>
