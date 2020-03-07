@@ -1,6 +1,7 @@
 <template>    
     <div class="book">
         <RemoveIcon 
+            v-if="removable"
             class="book__remove" 
             @click="removeBook(book)" 
             :size="20" 
@@ -29,6 +30,10 @@ export default {
             type: String,
             required: true,
             default: ''
+        },
+        removable: {
+            type: Boolean,
+            default: false
         }
     },
     data() {

@@ -2,6 +2,7 @@ import Library from '@/pages/Library.vue'
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import library from '@/store/modules/library'
+import ToggleRemove from 'vue-material-design-icons/Delete'
 
 jest.mock('@/store/modules/library')
 library.state =  {
@@ -26,7 +27,10 @@ describe('<Library />', () => {
                 modules: {
                     library
                 }
-            })
+            }),
+            stubs: {
+                ToggleRemove
+            }
         }) 
     })
 
@@ -68,4 +72,14 @@ describe('<Library />', () => {
         expect(bookUploading.exists()).toBe(true)
     })
 
+    it('toggles remove mode when toggle remove icon is clicked', () => {
+        const toggleRemove = wrapper.find(ToggleRemove)
+        const books = wrapper.findAll({ name: 'Book' })
+
+        expect(books.contains('[removable]')).toBe(false)
+
+        toggleRemove.trigger('click')
+
+        expect(books.contains('[removable]')).toBe(true)
+    })
 })

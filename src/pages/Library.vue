@@ -5,7 +5,11 @@
 
             <div>LIBRARY</div>
 
-            <SearchIcon class="library__search" :size="21" />
+            <ToggleRemove 
+                class="library__toggle-remove"
+                @click="removeMode = !removeMode"
+                :size="21" 
+            />
         </div>
 
         <div class="library__books">
@@ -14,7 +18,8 @@
             <Book 
                 v-for="book in books" 
                 :src="book" 
-                :key="book" 
+                :key="book"
+                :removable="removeMode"
             />
         </div>
     </div>
@@ -24,7 +29,7 @@
 import AddBook from '@/components/library/AddBook'
 import BookUploading from '@/components/library/BookUploading'
 import Book from '@/components/library/Book'
-import SearchIcon from 'vue-material-design-icons/Magnify'
+import ToggleRemove from 'vue-material-design-icons/Delete'
 import { mapActions, mapState } from 'vuex'
 
 export default {
@@ -33,17 +38,18 @@ export default {
         AddBook,
         Book,
         BookUploading,
-        SearchIcon
+        ToggleRemove
     },
-    computed: {
-        ...mapState('library', ['books', 'bookIsUploading'])
+    data() {
+        return {
+            removeMode: false
+        }
     },
+    computed: mapState('library', ['books', 'bookIsUploading']),
     created() {
         this.getBooks()
     },
-    methods: {
-        ...mapActions('library', ['addBook', 'getBooks'])
-    }
+    methods: mapActions('library', ['addBook', 'getBooks'])
 }
 </script>
 

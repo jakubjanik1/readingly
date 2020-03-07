@@ -10,7 +10,7 @@ localVue.use(Vuex)
 
 describe('<Book />', () => {
     it('shows book thumbnail', async () => {
-        const wrapper = mountBook('o/path/to/book.epub?')
+        const wrapper = mountBook({ src: 'o/path/to/book.epub?' })
         await wrapper.vm.$nextTick()
 
         const thumbnail = wrapper.find('img.book__thumbnail')
@@ -20,7 +20,7 @@ describe('<Book />', () => {
     })
 
     it('shows default thumbnail when image is not available', async () => {
-        const wrapper = mountBook('o/path/to/book.epub?')
+        const wrapper = mountBook({ src: 'o/path/to/book.epub?' })
         
         const thumbnail = wrapper.find('img.book__thumbnail')
         thumbnail.element.dispatchEvent(new Event('error'))
@@ -30,7 +30,7 @@ describe('<Book />', () => {
     })
 
     it('should navigate to /reader with proper prop on click', () => {
-        const wrapper = mountBook(process.env.VUE_APP_FIREBASE_STORAGE_URL.replace('@', 'book.epub'))
+        const wrapper = mountBook({ src: process.env.VUE_APP_FIREBASE_STORAGE_URL.replace('@', 'book.epub') })
         const thumbnail = wrapper.find('.book__thumbnail')
 
         thumbnail.trigger('click')
@@ -39,8 +39,22 @@ describe('<Book />', () => {
         expect(wrapper.vm.$router.push.mock.calls[0][0].params.book).toEqual('book.epub')
     })
 
+    it('hides remove icon by default', () => {
+        const wrapper = mountBook({ src: 'o/path/to/book.epub?' })
+        const removeIcon = wrapper.find('.book__remove')
+
+        expect(removeIcon.exists()).toBe(false)
+    })
+
+    it('shows remove icon when removable prop is true', () => {
+        const wrapper = mountBook({ src: 'o/path/to/book.epub?', removable: true })
+        const removeIcon = wrapper.find('.book__remove')
+
+        expect(removeIcon.exists()).toBe(true)
+    })
+
     it('calls removeBook action when remove icon is clicked', () => {
-        const wrapper = mountBook('o/path/to/book.epub?')
+        const wrapper = mountBook({ src: 'o/path/to/book.epub?', removable: true })
         const removeIcon = wrapper.find('.book__remove')
         
         removeIcon.trigger('click')
@@ -49,9 +63,9 @@ describe('<Book />', () => {
         expect(library.actions.removeBook.mock.calls[0][1]).toEqual('path/to/book.epub')
     })
 
-    function mountBook(src) {
+    function mountBook(props) {
         return mount(Book, {
-            propsData: { src },
+            propsData: props,
             mocks: {
                 $router: {
                     push: jest.fn()
