@@ -25,6 +25,6 @@ export default {
   .settings {
     display: grid;
     margin: 24px;
-    grid-gap: 32px;
+    grid-gap: 45px;
   }
 </style>

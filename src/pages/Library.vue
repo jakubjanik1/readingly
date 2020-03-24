@@ -65,6 +65,10 @@ export default {
             weight: 500;
         }
 
+        &__toggle-remove {
+            cursor: pointer;
+        }
+
         &__topbar {
             display: flex;
             justify-content: space-between;
