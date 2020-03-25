@@ -36,18 +36,12 @@ export default {
     data() {
         return {
             translations: {},
-            loading: false
+            loading: true
         }
-    },
-    mounted() {
-        if (! this.word) return
-
-        this.fetchTranslations()    
     },
     methods: { 
         isEmpty,
         async fetchTranslations() {
-            this.loading = true
             const { data } = await get(process.env.VUE_APP_NOW_API_URL + `/translate/${ this.word }`)
             this.loading = false
 
@@ -59,8 +53,9 @@ export default {
         }
     },
     watch: {
-        word() {
-            this.fetchTranslations()
+        word: {
+            handler: 'fetchTranslations',
+            immediate: true
         }
     }
 }
