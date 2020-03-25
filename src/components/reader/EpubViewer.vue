@@ -1,10 +1,22 @@
 <template>
-    <div id="epub-viewer" :style="{ height: `calc(${ windowHeight }px - 32px)` }"></div>
+    <div class="epub">
+        <ClipLoader
+            class="epub__loading"
+            v-show="loading"
+            color="#000"
+            size="75px"
+        />
+        <div 
+            id="epub__viewer"
+            :style="{ height: `calc(${ windowHeight }px - 32px)` }"
+        />
+    </div>
 </template>
 
 <script>
 import { Book } from 'epubjs'
 import { mapState, mapMutations } from 'vuex'
+import ClipLoader from 'vue-spinner/src/ClipLoader'
 
 export default {
     name: 'EpubViewer',
@@ -14,10 +26,14 @@ export default {
             required: true
         }
     },
+    components: {
+        ClipLoader
+    },
     data() {
         return {
             rendition: null,
-            windowHeight: 0
+            windowHeight: 0,
+            loading: true
         }
     },
     async mounted() {
@@ -26,7 +42,7 @@ export default {
 
         const book = new Book(this.src, { openAs: 'epub' })
 
-        const rendition = book.renderTo('epub-viewer', {
+        const rendition = book.renderTo('epub__viewer', {
             manager: 'continuous',
             flow: 'scrolled',
             width: '100%',
@@ -57,6 +73,8 @@ export default {
             const progress = book.locations.percentageFromCfi(location.start.cfi)
             this.setProgress(progress * 100)
         })
+
+        rendition.on('rendered', () => this.loading = false)
     },
     computed: {
         ...mapState('reader', ['fontSize', 'theme', 'progress'])
@@ -72,3 +90,16 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .epub__loading {
+        position: fixed;
+        height: calc(100% - 32px);
+        width: 100%;
+        top: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f9f9f9;
+    }
+</style>
