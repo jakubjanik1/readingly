@@ -3,19 +3,17 @@ import Dictionary from '@/components/reader/Dictionary'
 import moxios from 'moxios'
 
 describe('<Dictionary />', () => {
+    const API_URL = process.env.VUE_APP_NOW_API_URL
+
     beforeEach(() => moxios.install())
     afterAll(() => moxios.uninstall())
 
     it('shows info when translations are not available', async (done) => {
-        moxios.stubRequest(process.env.VUE_APP_NOW_API_URL + '/translate/badword', {
+        moxios.stubRequest(`${API_URL}/translate/badword`, {
             response: {}
         })
 
-        const wrapper = shallowMount(Dictionary, {
-            propsData: {
-                word: 'badword'
-            }
-        })
+        const wrapper = mountDictionary('badword')
 
         await wrapper.vm.$nextTick()
         expect(wrapper.html()).toContain('Loading...')
@@ -27,18 +25,14 @@ describe('<Dictionary />', () => {
     })
 
     it('shows translations when are available', (done) => {
-        moxios.stubRequest(process.env.VUE_APP_NOW_API_URL + '/translate/mutter', {
+        moxios.stubRequest(`${API_URL}/translate/mutter`, {
             response: {
                 'mutter {noun}': [ 'mamrotanie' ],
                 'to mutter {vb}': [ 'szemrać', 'mamrotać', 'przebąkiwać', 'mruknąć' ]
             }
         })
 
-        const wrapper = shallowMount(Dictionary, {
-            propsData: {
-                word: 'mutter'
-            }
-        })
+        const wrapper = mountDictionary('mutter')
 
         expect(wrapper.html()).toContain('Loading...')
 
@@ -47,4 +41,10 @@ describe('<Dictionary />', () => {
             done()
         })
     })
+
+    function mountDictionary(word) {
+        return shallowMount(Dictionary, {
+            propsData: { word }
+        })
+    }
 })
