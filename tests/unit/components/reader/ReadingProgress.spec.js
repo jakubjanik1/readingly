@@ -3,6 +3,8 @@ import ReadingProgress from '@/components/reader/ReadingProgress'
 import Vuex from 'vuex'
 import reader from '@/store/modules/reader'
 
+jest.mock('@/store/modules/reader')
+
 const localVue = createLocalVue()
 localVue.use(Vuex)
 

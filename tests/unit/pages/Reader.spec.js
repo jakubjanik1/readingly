@@ -7,6 +7,8 @@ import reader from '@/store/modules/reader'
 
 Vue.use(VueSlideoutPanel)
 
+jest.mock('@/store/modules/reader')
+
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
