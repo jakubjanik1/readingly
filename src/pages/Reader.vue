@@ -42,24 +42,27 @@ export default {
     },
     data() {
         return {
-            book: process.env.VUE_APP_FIREBASE_STORAGE_URL.replace('@', this.$route.params.book)
+            book: process.env.VUE_APP_FIREBASE_STORAGE_URL.replace('@', this.$route.params.book),
+            panel: null
         }
     },
     computed: mapState('reader', ['brightness']),
     methods: {
         openDictionary(word) {
-            this.showPanel('Dictionary', { word })
+            this.panel = this.showPanel('Dictionary', { word })
         },
         openSettings() {
-            this.showPanel('Settings')
+            this.panel = this.showPanel('Settings')
         },
         showPanel(component, props) {
-            this.$showPanel({ 
+            const config = {
                 component,
                 props,
                 openOn: 'bottom',
                 height: '400'
-            })
+            }
+
+            return this.panel ? this.panel.show(config) : this.$showPanel(config)
         }
     }
 }

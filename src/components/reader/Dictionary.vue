@@ -36,12 +36,13 @@ export default {
     data() {
         return {
             translations: {},
-            loading: true
+            loading: false
         }
     },
     methods: { 
         isEmpty,
         async fetchTranslations() {
+            this.loading = true
             const { data } = await get(process.env.VUE_APP_NOW_API_URL + `/translate/${ this.word }`)
             this.loading = false
 

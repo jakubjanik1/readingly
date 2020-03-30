@@ -1,16 +1,14 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Reader from '@/pages/Reader'
-import Vue from 'vue'
 import VueSlideoutPanel from 'vue2-slideout-panel'
 import Vuex from 'vuex'
 import reader from '@/store/modules/reader'
-
-Vue.use(VueSlideoutPanel)
 
 jest.mock('@/store/modules/reader')
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
+localVue.use(VueSlideoutPanel)
 
 describe('<Reader />', () => {
     let wrapper
