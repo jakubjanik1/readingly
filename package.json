@@ -31,27 +31,8 @@
     "@vue/test-utils": "1.0.0-beta.29",
     "jest-css-modules": "^2.1.0",
     "moxios": "^0.4.0",
-    "nock": "^11.7.0",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
-  },
-  "jest": {
-    "preset": "@vue/cli-plugin-unit-jest",
-    "transformIgnorePatterns": [
-      "/node_modules/(?!vue-material-design-icons|vue-spinner)"
-    ],
-    "moduleNameMapper": {
-      "\\.css$": "<rootDir>/node_modules/jest-css-modules"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+  }
 }
