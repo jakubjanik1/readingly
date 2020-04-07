@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import { get } from 'axios'
 import { isEmpty } from 'lodash'
 import SpeakIcon from 'vue-material-design-icons/VolumeHigh'
+import { translate } from '@/services/api.service'
 
 export default {
     name: 'Dictionary',
@@ -43,10 +43,8 @@ export default {
         isEmpty,
         async fetchTranslations() {
             this.loading = true
-            const { data } = await get(process.env.VUE_APP_NOW_API_URL + `/translate/${ this.word }`)
+            this.translations = await translate(this.word)
             this.loading = false
-
-            this.translations = data
         },
         speak() {
             const msg = new SpeechSynthesisUtterance(this.word)
