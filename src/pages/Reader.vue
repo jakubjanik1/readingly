@@ -59,7 +59,7 @@ export default {
                 component,
                 props,
                 openOn: 'bottom',
-                height: '400'
+                height: `${screen.height * 0.5}`
             }
 
             return this.panel ? this.panel.show(config) : this.$showPanel(config)
