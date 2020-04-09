@@ -6,10 +6,7 @@
             color="#000"
             size="75px"
         />
-        <div 
-            id="epub__viewer"
-            :style="{ height: `calc(${ windowHeight }px - 32px)` }"
-        />
+        <div id="epub__viewer" />
     </div>
 </template>
 
@@ -32,14 +29,10 @@ export default {
     data() {
         return {
             rendition: null,
-            windowHeight: 0,
             loading: true
         }
     },
     async mounted() {
-        this.windowHeight = window.innerHeight
-        window.onresize = e => this.windowHeight = e.target.innerHeight
-
         const book = new Book(this.src, { openAs: 'epub' })
 
         const rendition = book.renderTo('epub__viewer', {
@@ -92,6 +85,10 @@ export default {
 </script>
 
 <style scoped>
+    #epub__viewer {
+        height: calc(100vh - 32px);
+    }
+
     .epub__loading {
         position: fixed;
         height: calc(100% - 32px);
