@@ -14,6 +14,7 @@
 import { Book } from 'epubjs'
 import { mapState, mapMutations } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
+import $ from 'jquery'
 
 export default {
     name: 'EpubViewer',
@@ -67,12 +68,33 @@ export default {
             this.setProgress(progress * 100)
         })
 
-        rendition.on('rendered', () => this.loading = false)
+        rendition.on('rendered', () => {
+            this.loading = false
+            
+            rendition.getContents().forEach(content => {
+                $(content.content).click(function(e) {
+                    const selection = content.window.getSelection()
+                
+                    selection.modify('extend', 'backward', 'word')       
+                    const b = selection.toString()
+
+                    selection.modify('extend', 'forward', 'word')
+                    const a = selection.toString()
+                    selection.modify('move','forward','character')
+                                        
+                    if (b + a) {
+                        this.$emit('text-select', b + a)
+                    }
+                }.bind(this))
+            })
+        })
     },
     computed: {
         ...mapState('reader', ['fontSize', 'theme', 'progress'])
     },
-    methods: mapMutations('reader', ['setProgress']),
+    methods: {
+        ...mapMutations('reader', ['setProgress'])
+    },
     watch: {
         fontSize(newFontSize) {
             this.rendition.themes.fontSize(newFontSize + '%')
