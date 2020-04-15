@@ -68,6 +68,7 @@ export default {
             this.setProgress(progress * 100)
         })
 
+        let previousTimeStamp = null
         rendition.on('rendered', () => {
             this.loading = false
             
@@ -82,9 +83,11 @@ export default {
                     const a = selection.toString()
                     selection.modify('move','forward','character')
                                         
-                    if (b + a) {
+                    if (e.timeStamp != previousTimeStamp && b + a) {
                         this.$emit('text-select', b + a)
                     }
+
+                    previousTimeStamp = e.timeStamp
                 }.bind(this))
             })
         })
