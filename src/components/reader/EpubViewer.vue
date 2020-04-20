@@ -52,7 +52,14 @@ export default {
         rendition.themes.fontSize(this.fontSize + '%')
         rendition.themes.select(this.theme)
         
-        rendition.display()
+        const lastLocation = localStorage.getItem(this.src)
+        if (lastLocation) {
+            rendition.display(lastLocation)
+        } else {
+            rendition.display()
+        }
+
+        rendition.on('relocated', ({start}) => localStorage.setItem(this.src, start.cfi))
 
         rendition.on('selected', async cfiRange => {
             const range = await book.getRange(cfiRange)
