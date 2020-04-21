@@ -61,5 +61,19 @@ describe('Store - reader', () => {
             reader.mutations.setProgress(state, 110)
             expect(state.progress).toEqual(reader.state.progress)
         })
+
+        it('setFont sets new font when param is in the proper set', () => {
+            reader.mutations.setFont(state, 'Roboto Slab')
+            expect(state.font).toEqual('Roboto Slab')
+
+            reader.mutations.setFont(state, 'Lora')
+            expect(state.font).toEqual('Lora')
+        })
+
+        it('setFont does not set new font when param is not in the proper set', () => {
+            reader.mutations.setFont(state, 'Arial')
+
+            expect(state.font).toEqual(reader.state.font)
+        })
     })
 })
