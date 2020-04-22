@@ -3,6 +3,7 @@
     <BrightnessSlider />
     <FontSizeSlider />
     <ThemePicker />
+    <FontPicker />
   </div>
 </template>
 
@@ -10,13 +11,15 @@
 import BrightnessSlider from './BrightnessSlider'
 import FontSizeSlider from './FontSizeSlider'
 import ThemePicker from './ThemePicker'
+import FontPicker from './FontPicker'
 
 export default {
   name: 'Settings',
   components: {
     BrightnessSlider,
     FontSizeSlider,
-    ThemePicker
+    ThemePicker,
+    FontPicker
   }
 }
 </script>

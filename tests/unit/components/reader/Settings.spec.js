@@ -26,4 +26,9 @@ describe('<Settings />', () => {
         expect(themePicker.exists()).toBe(true)
     })
 
+    it('shows FontPicker', () => {
+        const fontPicker = wrapper.find({ name: 'FontPicker' })
+
+        expect(fontPicker.exists()).toBe(true)
+    })
 })
