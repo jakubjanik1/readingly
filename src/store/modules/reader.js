@@ -38,7 +38,7 @@ export default {
         },
 
         setFont(state, newFont) {
-            const availableFonts = ['Roboto Slab', 'Lora']
+            const availableFonts = ['Roboto Slab', 'Lora', null]
             if (availableFonts.includes(newFont)) {
                 state.font = newFont
             }
