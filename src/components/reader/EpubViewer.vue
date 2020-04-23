@@ -6,6 +6,7 @@
             color="#000"
             size="75px"
         />
+
         <div id="epub__viewer" />
     </div>
 </template>
@@ -40,12 +41,12 @@ export default {
             manager: 'continuous',
             flow: 'scrolled',
             width: '100%',
-            height: '100%'
+            height: '100%',
+            stylesheet: '/fonts.css'
         })
-
+  
         this.rendition = rendition
 
-        this.setProgress(0)
         rendition.themes.register('white', { body: { background: '#fff', color: '#333' }})
         rendition.themes.register('black', { body: { background: '#333', color: '#e7e7e7' }})
         rendition.themes.register('sepia', { body: { background: '#bfb79d', color: '#e7e7e7' }})
@@ -96,11 +97,15 @@ export default {
 
                     previousTimeStamp = e.timeStamp
                 }.bind(this))
+
+                content.documentElement.querySelector('#epubjs-inserted-css').innerHTML = `
+                    * { font-family: ${this.font}, serif !important; }
+                `
             })
         })
     },
     computed: {
-        ...mapState('reader', ['fontSize', 'theme', 'progress'])
+        ...mapState('reader', ['fontSize', 'theme', 'progress', 'font'])
     },
     methods: {
         ...mapMutations('reader', ['setProgress'])
@@ -111,6 +116,13 @@ export default {
         },
         theme(newTheme) {
             this.rendition.themes.select(newTheme)
+        },
+        font(newFont) {
+            this.rendition.getContents().forEach(content => {
+                content.documentElement.querySelector('#epubjs-inserted-css').innerHTML = `
+                    * { font-family: ${this.font}, serif !important; }
+                `
+            })
         }
     }
 }
