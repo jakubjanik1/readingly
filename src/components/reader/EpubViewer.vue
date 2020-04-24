@@ -31,57 +31,58 @@ export default {
     data() {
         return {
             rendition: null,
+            book: null,
             loading: true
         }
     },
     async mounted() {
-        const book = new Book(this.src, { openAs: 'epub' })
+        this.book = new Book(this.src, { openAs: 'epub' })
 
-        const rendition = book.renderTo('epub__viewer', {
+        this.rendition = this.book.renderTo('epub__viewer', {
             manager: 'continuous',
             flow: 'scrolled',
             width: '100%',
             height: '100%',
             stylesheet: '/fonts.css'
         })
-  
-        this.rendition = rendition
 
-        rendition.themes.register('white', { body: { background: '#fff', color: '#333' }})
-        rendition.themes.register('black', { body: { background: '#333', color: '#e7e7e7' }})
-        rendition.themes.register('sepia', { body: { background: '#bfb79d', color: '#e7e7e7' }})
-        rendition.themes.fontSize(this.fontSize + '%')
-        rendition.themes.select(this.theme)
-        
+        this.setupThemes()
+    
         const lastLocation = localStorage.getItem(this.src)
         if (lastLocation) {
-            rendition.display(lastLocation)
+            this.rendition.display(lastLocation)
         } else {
-            rendition.display()
+            this.rendition.display()
         }
 
-        rendition.on('relocated', ({start}) => localStorage.setItem(this.src, start.cfi))
+        await this.book.ready
+        this.book.locations.generate(1000)
 
-        rendition.on('selected', async cfiRange => {
-            const range = await book.getRange(cfiRange)
+        this.rendition.on('selected', this.onSelected)
+        this.rendition.on('relocated', this.onRelocated)
+        this.rendition.on('rendered', this.onRendered)
+    },
+    computed: {
+        ...mapState('reader', ['fontSize', 'theme', 'progress', 'font'])
+    },
+    methods: {
+        ...mapMutations('reader', ['setProgress']),
+        async onSelected(cfiRange) {
+            const range = await this.book.getRange(cfiRange)
             
             this.$emit('text-select', range.toString())
-        })
+        },
+        onRelocated(location) {
+            localStorage.setItem(this.src, location.start.cfi)
 
-        await book.ready
-        book.locations.generate(1000)
-
-        rendition.on('relocated', (location) => {
-            const progress = book.locations.percentageFromCfi(location.start.cfi)
+            const progress = this.book.locations.percentageFromCfi(location.start.cfi)
             this.setProgress(progress * 100)
-        })
-
-        let previousTimeStamp = null
-        rendition.on('rendered', () => {
+        },
+        onRendered() {
             this.loading = false
             
-            rendition.getContents().forEach(content => {
-                $(content.content).click(function(e) {
+            this.rendition.getContents().forEach(content => {
+                $(content.content).click((e => {
                     const selection = content.window.getSelection()
                 
                     selection.modify('extend', 'backward', 'word')       
@@ -95,20 +96,27 @@ export default {
                         this.$emit('text-select', b + a)
                     }
 
-                    previousTimeStamp = e.timeStamp
-                }.bind(this))
+                    let previousTimeStamp = e.timeStamp
+                }).bind(this))
+            })
 
+            this.changeFont(this.font)
+        },
+        setupThemes() {
+            this.rendition.themes.register('white', { body: { background: '#fff', color: '#333' }})
+            this.rendition.themes.register('black', { body: { background: '#333', color: '#e7e7e7' }})
+            this.rendition.themes.register('sepia', { body: { background: '#bfb79d', color: '#e7e7e7' }})
+
+            this.rendition.themes.fontSize(this.fontSize + '%')
+            this.rendition.themes.select(this.theme)
+        },
+        changeFont(font) {
+            this.rendition.getContents().forEach(content => {
                 content.documentElement.querySelector('#epubjs-inserted-css').innerHTML = `
                     * { font-family: ${this.font}, serif !important; }
                 `
             })
-        })
-    },
-    computed: {
-        ...mapState('reader', ['fontSize', 'theme', 'progress', 'font'])
-    },
-    methods: {
-        ...mapMutations('reader', ['setProgress'])
+        }
     },
     watch: {
         fontSize(newFontSize) {
@@ -117,12 +125,8 @@ export default {
         theme(newTheme) {
             this.rendition.themes.select(newTheme)
         },
-        font(newFont) {
-            this.rendition.getContents().forEach(content => {
-                content.documentElement.querySelector('#epubjs-inserted-css').innerHTML = `
-                    * { font-family: ${this.font}, serif !important; }
-                `
-            })
+        font() {
+            this.changeFont(this.font)
         }
     }
 }
