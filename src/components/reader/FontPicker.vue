@@ -1,17 +1,34 @@
 <template>
     <div class="font-picker">
-        <div class="font-picker__option" font="default" @click="setFont(null)">Aa</div>
-        <div class="font-picker__option" font="roboto" @click="setFont('Roboto Slab')">Aa</div>
-        <div class="font-picker__option" font="lora" @click="setFont('Lora')">Aa</div>
+        <div 
+            class="font-picker__option"
+            :class="{ 'font-picker__option--active' : font === activeFont }" 
+            v-for="font in fonts" 
+            :key="font"
+            :font="font" 
+            @click="setFont(font)"
+        >Aa</div>
     </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
     name: 'FontPicker',
-    methods: mapMutations('reader', ['setFont'])
+    data() {
+        return {
+            fonts: [
+                null,
+                'Roboto Slab',
+                'Lora'
+            ]
+        }
+    },
+    methods: mapMutations('reader', ['setFont']),
+    computed: mapState('reader', {
+        activeFont: state => state.font
+    })
 }
 </script>
 
@@ -31,12 +48,16 @@ export default {
             border-radius: 1.2em;
             width: 90px;
             height: 40px;
-            font-size: large;
 
-            &[font=roboto] {
+            &--active {
+                border: 2px solid #f7b741;
+            }
+
+            &[font="Roboto Slab"] {
                 font-family: Roboto Slab, serif;
             }
-            &[font=lora] {
+
+            &[font="Lora"] {
                 font-family: Lora, serif;
             }
         }

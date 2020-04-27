@@ -1,17 +1,37 @@
 <template>
     <div class="theme-picker">
-        <div class="theme-picker__option" theme="white" @click="setTheme('white')">White</div>
-        <div class="theme-picker__option" theme="black" @click="setTheme('black')">Black</div>
-        <div class="theme-picker__option" theme="sepia" @click="setTheme('sepia')">Sepia</div>
+        <div 
+            class="theme-picker__option"
+            :class="{ 'theme-picker__option--active' : theme === activeTheme }" 
+            v-for="theme in themes" 
+            :key="theme"
+            :theme="theme" 
+            @click="setTheme(theme)"
+        >{{ theme | capitalize }}</div>
     </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
     name: 'ThemePicker',
-    methods: mapMutations('reader', ['setTheme'])
+    data() {
+        return {
+            themes: [
+                'white',
+                'black',
+                'sepia'
+            ]
+        }
+    },
+    filters: {
+        capitalize: text => text[0].toUpperCase() + text.slice(1)
+    },
+    methods: mapMutations('reader', ['setTheme']),
+    computed: mapState('reader', {
+        activeTheme: state => state.theme
+    })
 }
 </script>
 
@@ -44,6 +64,11 @@ export default {
             &[theme=sepia] {
                 color: #e7e7e7;
                 background: #bfb79d;
+            }
+
+            &--active[theme] {
+                border: 2px solid;
+                border-color: #f7b741;
             }
 
             &:hover {
