@@ -44,13 +44,13 @@ export default {
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
-            border: 1px solid #333;
+            border: 2px solid #dedede;
             border-radius: 1.2em;
             width: 90px;
             height: 40px;
 
             &--active {
-                border: 2px solid #f7b741;
+                border: 2px solid #f7b337;
             }
 
             &[font="Roboto Slab"] {

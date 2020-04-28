@@ -10,7 +10,7 @@
             dotSize="22"
             :height="3"
             width="100%"
-            :dotStyle="{ border: '2px solid' }"
+            :dotStyle="{ border: '2px solid #f7b337' }"
             @change="$emit('change', $event)"
         />
 
@@ -51,7 +51,8 @@ export default {
         grid-column-gap: 24px;   
     }
 
-    $themeColor: #000;
+    $themeColor: #f7b337;
+    $bgColor: #dedede;
     $dotShadow: none;
     $dotShadowFocus: none;
 

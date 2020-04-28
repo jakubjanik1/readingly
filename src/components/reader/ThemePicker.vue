@@ -51,7 +51,7 @@ export default {
             font-weight: 500;
 
             &[theme=white] {
-                border: 1px solid #333;
+                border: 2px solid #dedede;
                 color: #333;
                 background: #fff;
             }
@@ -68,12 +68,7 @@ export default {
 
             &--active[theme] {
                 border: 2px solid;
-                border-color: #f7b741;
-            }
-
-            &:hover {
-                cursor: pointer;
-                filter: brightness(95%);
+                border-color: #f7b337;
             }
         }
     }

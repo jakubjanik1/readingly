@@ -2,8 +2,8 @@
   <div class="settings">
     <BrightnessSlider />
     <FontSizeSlider />
-    <ThemePicker />
     <FontPicker />
+    <ThemePicker />
   </div>
 </template>
 
@@ -29,5 +29,6 @@ export default {
     display: grid;
     margin: 24px;
     grid-gap: 45px;
+    color: #333;
   }
 </style>
