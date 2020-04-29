@@ -25,7 +25,7 @@ describe('<FontPicker />', () => {
     })
 
     it('calls setFont mutation with null when this option is clicked', () => {
-        const defaultFont = wrapper.find('.font-picker__option[font=default]')
+        const defaultFont = wrapper.find('.font-picker__option')
 
         defaultFont.trigger('click')
 
@@ -34,7 +34,7 @@ describe('<FontPicker />', () => {
     })
 
     it('calls setFont mutation with "Robot Slab" when this option is clicked', () => {
-        const robotoFont = wrapper.find('.font-picker__option[font=roboto]')
+        const robotoFont = wrapper.find('.font-picker__option[font="Roboto Slab"]')
 
         robotoFont.trigger('click')
 
@@ -43,7 +43,7 @@ describe('<FontPicker />', () => {
     })
 
     it('calls setFont mutation with "Lora" when this option is clicked', () => {
-        const loraFont = wrapper.find('.font-picker__option[font=lora]')
+        const loraFont = wrapper.find('.font-picker__option[font=Lora]')
 
         loraFont.trigger('click')
 
