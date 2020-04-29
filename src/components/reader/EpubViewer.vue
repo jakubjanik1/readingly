@@ -3,7 +3,7 @@
         <ClipLoader
             class="epub__loading"
             v-show="loading"
-            color="#000"
+            color="#333"
             size="75px"
         />
 
@@ -103,7 +103,7 @@ export default {
             this.changeFont(this.font)
         },
         setupThemes() {
-            this.rendition.themes.register('white', { body: { background: '#fff', color: '#333' }})
+            this.rendition.themes.register('white', { body: { background: '#f9f9f9', color: '#333' }})
             this.rendition.themes.register('black', { body: { background: '#333', color: '#e7e7e7' }})
             this.rendition.themes.register('sepia', { body: { background: '#bfb79d', color: '#e7e7e7' }})
 

@@ -16,6 +16,6 @@ export default {
         height: 4px;
         position: fixed;
         bottom: 0;
-        background: #000;
+        background: #333;
     }
 </style>

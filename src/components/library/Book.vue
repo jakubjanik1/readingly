@@ -18,7 +18,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-import RemoveIcon from 'vue-material-design-icons/Delete'
+import RemoveIcon from 'vue-material-design-icons/Close'
 
 export default {
     name: 'Book',
@@ -68,7 +68,7 @@ export default {
             color: #fff;
             border-radius: 50%;
             padding: 2px;
-            background: #ff7315;
+            background: #f7b337;
             position: absolute;
             right: -5px;
             top: -5px;

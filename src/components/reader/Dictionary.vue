@@ -62,16 +62,19 @@ export default {
 
 <style lang="scss">
     .dictionary {
-        background: #fff;
+        background: #f9f9f9;
         padding: 1em;
         overflow: auto !important;
+        color: #333;
+        height: 100%;
+        box-sizing: border-box;
 
         &__word {
             font: {
                 weight: 600;
                 size: 1.2em;
             }
-            color: #ff7315;
+            color: #f7b337;
             text-transform: uppercase;
             padding-bottom: 1em;
             display: flex;
@@ -80,7 +83,7 @@ export default {
         }
 
         &__speak {
-            color: #000;
+            color: #333;
             height: 24px;
             margin-left: 8px;
             cursor: pointer;

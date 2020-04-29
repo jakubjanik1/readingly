@@ -1,6 +1,6 @@
 <template>
     <div class="return-to-library" @click="navigateToLibrary">
-        <ReturnIcon />
+        <ReturnIcon fillColor="#333" />
     </div>
 </template>
 

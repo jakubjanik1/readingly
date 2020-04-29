@@ -7,6 +7,7 @@
 
             <ToggleRemove 
                 class="library__toggle-remove"
+                fillColor="#333"
                 @click="removeMode = !removeMode"
                 :size="21" 
             />
@@ -73,6 +74,7 @@ export default {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: #333;
         }
 
         &__books {

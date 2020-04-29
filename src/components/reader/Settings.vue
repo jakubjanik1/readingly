@@ -27,8 +27,11 @@ export default {
 <style lang="scss" scoped>
   .settings {
     display: grid;
-    margin: 24px;
+    padding: 24px;
     grid-gap: 45px;
     color: #333;
+    background: #f9f9f9;
+    height: 100%;
+    box-sizing: border-box;
   }
 </style>
