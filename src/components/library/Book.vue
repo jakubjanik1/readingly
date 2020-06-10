@@ -60,11 +60,11 @@ export default {
 
 <style lang="scss" scoped>
     .book {
+        cursor: pointer;
         position: relative;
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 
         &__remove {
-            cursor: pointer;
             color: #fff;
             border-radius: 50%;
             padding: 2px;
@@ -73,13 +73,11 @@ export default {
             right: -5px;
             top: -5px;
             display: flex;
-            justify-content: center;
         }
 
         &__thumbnail {
-            cursor: pointer;
             width: 120px;
-            height: 192px;
+            height: 100%;
             border-radius: 4px;
         }
     }

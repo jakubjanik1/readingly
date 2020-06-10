@@ -47,7 +47,6 @@ export default {
     .slider {
         display: grid;
         grid-template-columns: 24px auto 24px;
-        grid-template-rows: 24px;
         grid-column-gap: 24px;   
     }
 

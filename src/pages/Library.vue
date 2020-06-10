@@ -67,6 +67,7 @@ export default {
         }
 
         &__toggle-remove {
+            display: flex;
             cursor: pointer;
         }
 
@@ -84,11 +85,6 @@ export default {
             grid-gap: 1.1em;
             justify-items: center;
             margin: 1.2em 0 1.2em 0;
-        }
-
-        &__search {
-            display: flex;
-            justify-content: center;
         }
     }
 </style>

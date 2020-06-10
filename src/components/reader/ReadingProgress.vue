@@ -11,7 +11,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
     .reading-progress {
         height: 4px;
         position: fixed;

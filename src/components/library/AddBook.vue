@@ -38,10 +38,6 @@ export default {
 
 <style lang="scss" scoped>
     .add-book {    
-        width: 1.3em;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         cursor: pointer;
 
         &__input {
@@ -50,7 +46,6 @@ export default {
 
         &__icon {
             display: flex;
-            justify-content: center;
         }
     }
 </style>

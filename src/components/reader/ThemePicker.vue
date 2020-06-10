@@ -38,7 +38,7 @@ export default {
 <style lang="scss" scoped>
     .theme-picker {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
 
         &__option {
             display: flex;
@@ -46,7 +46,7 @@ export default {
             justify-content: center;
             box-sizing: border-box;
             border-radius: 1.2em;
-            width: 90px;
+            flex-basis: 90px;
             height: 40px;
             font-weight: 500;
 

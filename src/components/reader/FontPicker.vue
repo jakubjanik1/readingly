@@ -37,7 +37,7 @@ export default {
 
     .font-picker {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
 
         &__option {
             display: flex;
@@ -46,7 +46,7 @@ export default {
             box-sizing: border-box;
             border: 2px solid #dedede;
             border-radius: 1.2em;
-            width: 90px;
+            flex-basis: 90px;
             height: 40px;
 
             &--active {
