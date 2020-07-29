@@ -10,6 +10,8 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 localVue.use(VueSlideoutPanel)
 
+const STORAGE_URL = 'https://firebasestorage.googleapis.com/v0/b/readingly-ab5f7.appspot.com/o/@?alt=media'
+
 describe('<Reader />', () => {
     let wrapper
 
@@ -35,7 +37,7 @@ describe('<Reader />', () => {
         const epubViewer = wrapper.find({ name: 'EpubViewer' })
 
         expect(epubViewer.exists()).toBe(true)
-        expect(epubViewer.props('src')).toBe(process.env.VUE_APP_FIREBASE_STORAGE_URL.replace('@', 'book.epub'))
+        expect(epubViewer.props('src')).toBe(STORAGE_URL.replace('@', 'book.epub'))
     })
 
     it('opens Dictionary when EpubViewer emits "text-select" event', async () => {

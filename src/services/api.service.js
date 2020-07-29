@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: process.env.VUE_APP_NOW_API_URL
+    baseURL: 'https://functions.jakubjanik.now.sh/'
 })
 
 export async function translate(word) {

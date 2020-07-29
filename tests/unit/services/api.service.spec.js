@@ -2,8 +2,8 @@ import { translate } from '@/services/api.service'
 import nock from 'nock'
 
 describe('Api Service', () => {
-    const API_URL = process.env.VUE_APP_NOW_API_URL
-
+    const API_URL = 'https://functions.jakubjanik.now.sh/'
+    
     it('translate() should work', async () => {
         const response = {
             'humongous {adj.}': ['wielgachny', 'ogromniasty', 'olbrzymi', 'kolosalny', 'potężny']

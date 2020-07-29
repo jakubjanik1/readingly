@@ -9,6 +9,9 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 
 describe('<Book />', () => {
+    const STORAGE_URL = 'https://firebasestorage.googleapis.com/v0/b/readingly-ab5f7.appspot.com/o/@?alt=media'
+    const DEFAULT_BOOK_COVER = STORAGE_URL.replace('@', 'default_cover.png')
+
     it('shows book thumbnail', async () => {
         const wrapper = mountBook({ src: 'o/path/to/book.epub?' })
         await wrapper.vm.$nextTick()
@@ -26,11 +29,11 @@ describe('<Book />', () => {
         thumbnail.element.dispatchEvent(new Event('error'))
 
         expect(thumbnail.exists()).toBe(true)
-        expect(thumbnail.attributes('src')).toEqual(process.env.VUE_APP_DEFAULT_BOOK_COVER)
+        expect(thumbnail.attributes('src')).toEqual(DEFAULT_BOOK_COVER)
     })
 
     it('should navigate to /reader with proper prop on click', () => {
-        const wrapper = mountBook({ src: process.env.VUE_APP_FIREBASE_STORAGE_URL.replace('@', 'book.epub') })
+        const wrapper = mountBook({ src: STORAGE_URL.replace('@', 'book.epub') })
         const thumbnail = wrapper.find('.book__thumbnail')
 
         thumbnail.trigger('click')

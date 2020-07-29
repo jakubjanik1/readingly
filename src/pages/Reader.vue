@@ -31,6 +31,8 @@ const Wrapper = styled('div', { brightness: Number })`
 Vue.component('Dictionary', Dictionary)
 Vue.component('Settings', Settings)
 
+const STORAGE_URL = 'https://firebasestorage.googleapis.com/v0/b/readingly-ab5f7.appspot.com/o/@?alt=media'
+
 export default {
     name: 'Reader',
     components: {
@@ -42,7 +44,7 @@ export default {
     },
     data() {
         return {
-            book: process.env.VUE_APP_FIREBASE_STORAGE_URL.replace('@', this.$route.params.book),
+            book: STORAGE_URL.replace('@', this.$route.params.book),
             panel: null
         }
     },

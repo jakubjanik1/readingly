@@ -20,6 +20,8 @@
 import { mapActions } from 'vuex'
 import RemoveIcon from 'vue-material-design-icons/Close'
 
+const DEFAULT_BOOK_COVER = 'https://firebasestorage.googleapis.com/v0/b/readingly-ab5f7.appspot.com/o/default_cover.png?alt=media'
+
 export default {
     name: 'Book',
     components: {
@@ -49,7 +51,7 @@ export default {
             this.$router.push({ name: 'reader', params: { book }})
         },
         showDefaultThumbnail() {
-            this.thumbnail = process.env.VUE_APP_DEFAULT_BOOK_COVER
+            this.thumbnail = DEFAULT_BOOK_COVER
         }
     },
     mounted() {    
