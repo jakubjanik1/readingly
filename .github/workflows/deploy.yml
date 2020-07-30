@@ -13,10 +13,6 @@ jobs:
         uses: actions/checkout@master
       - name: Install Dependencies
         run: npm install
-      - name: Run Tests
-        env:
-          CI: true
-        run: npm run test:unit
       - name: Build
         run: npm run build
       - name: Archive Production Artifact
