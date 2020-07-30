@@ -39,7 +39,7 @@ describe('Firebase Storage', () => {
 
             const path = await uploadFile(file)
 
-            expect(isUuid(storage.child.mock.calls[0][0])).toBe(true)
+            expect(isUuid(storage.child.mock.calls[0][0].replace('.epub', ''))).toBe(true)
             expect(storage.put).toHaveBeenCalledWith(file)
             expect(path).toEqual('path/to/file.epub')
         })

@@ -8,7 +8,13 @@ describe('Api Service', () => {
         const response = {
             'humongous {adj.}': ['wielgachny', 'ogromniasty', 'olbrzymi', 'kolosalny', 'potężny']
         }
-        const request = nock(API_URL).get('/translate/humongous').reply(200, response)
+        const request = nock(API_URL)
+            .defaultReplyHeaders({
+                'access-control-allow-origin': '*',
+                'access-control-allow-credentials': 'true' 
+            })
+            .get('/translate/humongous')
+            .reply(200, response)
 
         const translations = await translate('humongous')
 

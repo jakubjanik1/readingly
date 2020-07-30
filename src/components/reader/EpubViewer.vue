@@ -112,7 +112,7 @@ export default {
         },
         changeFont(font) {
             this.rendition.getContents().forEach(content => {
-                content.documentElement.querySelector('#epubjs-inserted-css').innerHTML = `
+                content.documentElement.querySelector('#epubjs-inserted-css-').innerHTML = `
                     * { font-family: ${this.font}, serif !important; }
                 `
             })

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import SettingsIcon from 'vue-material-design-icons/Settings'
+import SettingsIcon from 'vue-material-design-icons/Cog'
 
 export default {
     name: 'OpenSettings',
