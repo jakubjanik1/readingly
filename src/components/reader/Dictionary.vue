@@ -13,7 +13,7 @@
                 :key="key"    
             >   
                 <div class="dictionary__key">{{ key }}</div>
-                <div>{{ words.join(' ● ') }}</div>
+                <div>{{ words.join(' • ') }}</div>
             </div>
         </div>
     </div>

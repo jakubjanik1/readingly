@@ -13,7 +13,7 @@ exports[`<Dictionary /> shows translations when are available 1`] = `
     </div>
     <div>
       <div class="dictionary__key">to mutter {vb}</div>
-      <div>szemrać ● mamrotać ● przebąkiwać ● mruknąć</div>
+      <div>szemrać • mamrotać • przebąkiwać • mruknąć</div>
     </div>
   </div>
 </div>
