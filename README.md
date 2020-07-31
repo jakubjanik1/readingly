@@ -23,19 +23,18 @@
 
 ## Project Overview 🎉
 
-This is a simple web ebook reader app. It was built specifically for mobile usage. You can add and delete ebooks in epub format. During a reading, you can change the font family, f
-ont size, brightness, or theme. It's possible to see the translation of the English word by just clicking on it. Though it is not a full-featured app, I use it personally to read my own English books.
+This is a simple web ebook reader app. It was built specifically for mobile usage. You can add and delete ebooks in epub format. During a reading, you can change the font family, font size, brightness, or theme. It's possible to see the translation of the English word by just clicking on it. Though it is not a full-featured app, I use it personally to read my own English books.
 
 ## Tech/framework used 🔧
 
 | Tech                                                    | Description                              |
 | ------------------------------------------------------- | ---------------------------------------- |
-| [Vue](https://vuejs.org/)                               | Front-end JavaScript framework   |
-| [Vuex](https://vuex.vuejs.org/)                         | State management library for Vue   |
-| [Vue Router](https://router.vuejs.org/)                 | Router for Vue  |
-| [Vue Test Utils](https://vue-test-utils.vuejs.org/)     | Unit testing library for Vue   |
-| [Jest](https://jestjs.io/)                              | JavaScript testing framework   |
-| [Firebase](https://firebase.google.com/)                | Google development platform   |
+| [Vue](https://vuejs.org/)                               | Front-end JavaScript framework           |
+| [Vuex](https://vuex.vuejs.org/)                         | State management library for Vue         |
+| [Vue Router](https://router.vuejs.org/)                 | Router for Vue                           |
+| [Vue Test Utils](https://vue-test-utils.vuejs.org/)     | Unit testing library for Vue             |
+| [Jest](https://jestjs.io/)                              | JavaScript testing framework             |
+| [Firebase](https://firebase.google.com/)                | Google development platform              |
 
 
 ## Screenshots 📺
@@ -68,11 +67,11 @@ yarn serve
 
 ## Available scripts
 
-| Command                   | Description                   |     |
-| ------------------------- | ----------------------------- | --- |
-| `yarn serve`           | Open local server             |     |
-| `yarn build`           | Create optimized build        |     |
-| `yarn run test:unit`            | Run unit tests                     |     |
+| Command                   | Description                   |
+| ------------------------- | ----------------------------- |
+| `yarn serve`              | Open local server             |
+| `yarn build`              | Create optimized build        |
+| `yarn test:unit`          | Run unit tests                |
 
 
 ## Live 📍
