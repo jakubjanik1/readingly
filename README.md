@@ -35,6 +35,7 @@ This is a simple web ebook reader app. It was built specifically for mobile usag
 | [Vue Test Utils](https://vue-test-utils.vuejs.org/)     | Unit testing library for Vue             |
 | [Jest](https://jestjs.io/)                              | JavaScript testing framework             |
 | [Firebase](https://firebase.google.com/)                | Google development platform              |
+| [SCSS](https://sass-lang.com/)                          | CSS Preprocessor              |
 
 
 ## Screenshots 📺
