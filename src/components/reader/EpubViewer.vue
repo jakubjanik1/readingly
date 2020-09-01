@@ -123,7 +123,15 @@ export default {
             this.rendition.themes.fontSize(newFontSize + '%')
         },
         theme(newTheme) {
-            this.rendition.themes.select(newTheme)
+            this.rendition.getContents().forEach(content => {
+                console.log(content)
+                content.documentElement.querySelector('#epubjs-inserted-css-white')?.remove()
+                content.documentElement.querySelector('#epubjs-inserted-css-black')?.remove()
+                content.documentElement.querySelector('#epubjs-inserted-css-sepia')?.remove()
+            })
+            
+            this.rendition.themes.update(newTheme)
+            // })
         },
         font() {
             this.changeFont(this.font)
