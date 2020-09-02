@@ -62,7 +62,6 @@ export default {
 
 <style lang="scss">
     .dictionary {
-        background: #f9f9f9;
         padding: 1em;
         overflow: auto !important;
         color: #333;

@@ -82,3 +82,16 @@ export default {
         }
     }
 </style>
+
+<style lang="scss">
+    .slideout-panel .slideout-wrapper .slideout {
+        display: flex;
+        justify-content: center;
+        background: #f9f9f9;
+
+        & > * {
+            width: 100%;
+            max-width: 700px;
+        }
+    }   
+</style>

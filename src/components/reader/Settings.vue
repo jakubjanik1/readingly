@@ -30,7 +30,6 @@ export default {
     padding: 24px;
     grid-gap: 45px;
     color: #333;
-    background: #f9f9f9;
     height: 100%;
     box-sizing: border-box;
   }
