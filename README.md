@@ -6,10 +6,6 @@
 <img src="https://res.cloudinary.com/djc9jias4/image/upload/v1596115592/readingly/hedjuijaepdixova2deu.png"  alt="Logo">
 </p>
 
-<br>
-
-<br>
-
 </h1>
 
 <h4 align="center">readingly - web ebook reader</h4>
@@ -59,7 +55,7 @@ This is a simple web ebook reader app. It was built specifically for mobile usag
 ## Installation 💾
 
 ``` shell
-git clone https://github.com/jakubjanik1/readingly.git
+git clone https://github.com/kubajanik/readingly.git
 
 yarn install
 
