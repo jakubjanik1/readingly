@@ -101,6 +101,7 @@ export default {
     .slideout-panel .slideout-wrapper .slideout {
         display: flex;
         justify-content: center;
+        background: var(--theme-bg-color) !important;
 
         & > * {
             width: 100%;

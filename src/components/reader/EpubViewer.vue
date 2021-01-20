@@ -3,7 +3,7 @@
         <ClipLoader
             class="epub__loading"
             v-show="loading"
-            color="#333"
+            color="var(--theme-text-color)"
             size="75px"
         />
 
@@ -41,7 +41,7 @@ export default {
         this.rendition = this.book.renderTo('epub__viewer', {
             manager: 'continuous',
             flow: 'paginated',
-            width: document.body.clientWidth > 1000 ? '1000px' : '100%',
+            width: '100%',
             height: '100%',
             stylesheet: '/fonts.css',
             snap: true
@@ -142,7 +142,7 @@ export default {
 <style scoped>
     #epub__viewer {
         height: calc(100vh - 32px);
-        background: #f9f9f9;
+        background: var(--theme-bg-color);
     }
 
     .epub__loading {
@@ -153,7 +153,8 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #f9f9f9;
+        background: var(--theme-bg-color);
+        color: var(--theme-text-color);
     }
 </style>
 
