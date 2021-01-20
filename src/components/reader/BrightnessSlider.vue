@@ -5,8 +5,8 @@
     :max="100" 
     @change="setBrightness($event)"
   >
-      <BrightnessDecrease slot="left-label" fillColor="#333" />
-      <BrightnessIcrease slot="right-label" fillColor="#333" />
+      <BrightnessDecrease slot="left-label" />
+      <BrightnessIcrease slot="right-label" />
   </Slider>
 </template>
 

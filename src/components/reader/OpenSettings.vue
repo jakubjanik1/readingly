@@ -1,6 +1,6 @@
 <template>
     <div class="open-settings" @click="$emit('click')">
-        <SettingsIcon fillColor="#333" />
+        <SettingsIcon />
     </div>
 </template>
 

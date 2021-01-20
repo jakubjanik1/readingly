@@ -5,8 +5,8 @@
     :max="200" 
     @change="setFontSize($event)"
   >
-    <FontDecreaseIcon slot="left-label" fillColor="#333" />
-    <FontIncreaseIcon slot="right-label" fillColor="#333" />
+    <FontDecreaseIcon slot="left-label" />
+    <FontIncreaseIcon slot="right-label" />
   </Slider>
 </template>
 

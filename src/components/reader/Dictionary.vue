@@ -67,6 +67,8 @@ export default {
         color: #333;
         height: 100%;
         box-sizing: border-box;
+        background-color: var(--theme-bg-color);
+        color: var(--theme-text-color);
 
         &__word {
             font: {
@@ -82,7 +84,7 @@ export default {
         }
 
         &__speak {
-            color: #333;
+            color: var(--theme-text-color);
             height: 24px;
             margin-left: 8px;
             cursor: pointer;

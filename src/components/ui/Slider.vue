@@ -1,6 +1,6 @@
 <template>
     <div class="slider">
-        <slot name="left-label" />
+        <slot class="slider__label" name="left-label" />
 
         <VueSlider
             :value="value"
@@ -10,11 +10,11 @@
             dotSize="22"
             :height="3"
             width="100%"
-            :dotStyle="{ border: '2px solid #f7b337' }"
+            :dotStyle="{ border: '2px solid #f7b337', background: 'var(--theme-bg-color)' }"
             @change="$emit('change', $event)"
         />
 
-        <slot name="right-label" />
+        <slot class="slider__label" name="right-label" />
     </div>
 </template>
 
@@ -47,7 +47,8 @@ export default {
     .slider {
         display: grid;
         grid-template-columns: 24px auto 24px;
-        grid-column-gap: 24px;   
+        grid-column-gap: 24px; 
+        color: var(--theme-text-color); 
     }
 
     $themeColor: #f7b337;

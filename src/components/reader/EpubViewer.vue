@@ -106,7 +106,7 @@ export default {
         setupThemes() {
             this.rendition.themes.register('white', { body: { background: '#f9f9f9', color: '#333' }})
             this.rendition.themes.register('black', { body: { background: '#333', color: '#e7e7e7' }})
-            this.rendition.themes.register('sepia', { body: { background: '#bfb79d', color: '#e7e7e7' }})
+            this.rendition.themes.register('sepia', { body: { background: '#fbf0d9', color: '#5f4b32' }})
 
             this.rendition.themes.fontSize(this.fontSize + '%')
             this.rendition.themes.select(this.theme)

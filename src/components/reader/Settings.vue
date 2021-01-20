@@ -29,8 +29,9 @@ export default {
     display: grid;
     padding: 24px;
     grid-gap: 45px;
-    color: #333;
     height: 100%;
     box-sizing: border-box;
+    background-color: var(--theme-bg-color);
+    color: var(--theme-text-color);
   }
 </style>
