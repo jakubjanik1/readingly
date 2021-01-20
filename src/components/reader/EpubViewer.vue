@@ -40,10 +40,11 @@ export default {
 
         this.rendition = this.book.renderTo('epub__viewer', {
             manager: 'continuous',
-            flow: 'scrolled',
+            flow: 'paginated',
             width: document.body.clientWidth > 1000 ? '1000px' : '100%',
             height: '100%',
-            stylesheet: '/fonts.css'
+            stylesheet: '/fonts.css',
+            snap: true
         })
 
         this.setupThemes()
@@ -124,14 +125,12 @@ export default {
         },
         theme(newTheme) {
             this.rendition.getContents().forEach(content => {
-                console.log(content)
                 content.documentElement.querySelector('#epubjs-inserted-css-white')?.remove()
                 content.documentElement.querySelector('#epubjs-inserted-css-black')?.remove()
                 content.documentElement.querySelector('#epubjs-inserted-css-sepia')?.remove()
             })
             
             this.rendition.themes.update(newTheme)
-            // })
         },
         font() {
             this.changeFont(this.font)
