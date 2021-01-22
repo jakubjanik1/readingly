@@ -21,3 +21,5 @@ firebase-debug.log
 *.njsproj
 *.sln
 *.sw?
+
+.vercel
