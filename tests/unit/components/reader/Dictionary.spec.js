@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import Dictionary from '@/components/reader/Dictionary'
-import { translate } from '@/services/api.service'
+import { translate } from '@/services/dictionary.service'
 
 // jest.mock('@/services/api.service', () => ({
 //     translate: jest.fn()

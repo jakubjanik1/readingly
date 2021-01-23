@@ -1,7 +1,7 @@
-import { translate } from '@/services/api.service'
+import { translate } from '@/services/dictionary.service'
 import nock from 'nock'
 
-describe('Api Service', () => {  
+describe('Dictionary Service', () => {  
     it('translate() should work', async () => {
         nock.disableNetConnect()
         nock.enableNetConnect('localhost')
