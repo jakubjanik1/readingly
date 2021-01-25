@@ -16,6 +16,7 @@ import { Book } from 'epubjs'
 import { mapState, mapMutations } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
 import $ from 'jquery'
+import when from 'when-key-events'
 
 export default {
     name: 'EpubViewer',
@@ -62,6 +63,9 @@ export default {
         this.rendition.on('selected', this.onSelected)
         this.rendition.on('relocated', this.onRelocated)
         this.rendition.on('rendered', this.onRendered)
+
+        when('arrow_left').Execute(() => this.rendition.prev())
+        when('arrow_right').Execute(() => this.rendition.next())
     },
     computed: {
         ...mapState('reader', ['fontSize', 'theme', 'progress', 'font'])
@@ -114,7 +118,10 @@ export default {
         changeFont(font) {
             this.rendition.getContents().forEach(content => {
                 content.documentElement.querySelector('#epubjs-inserted-css-').innerHTML = `
-                    * { font-family: ${this.font}, serif !important; }
+                    * { 
+                        font-family: ${this.font}, serif !important;
+                        cursor: pointer;
+                    }
                 `
             })
         }

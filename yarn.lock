@@ -10790,6 +10790,11 @@ whatwg-url@^7.0.0:
     tr46 "^1.0.1"
     webidl-conversions "^4.0.2"
 
+when-key-events@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/when-key-events/-/when-key-events-1.8.0.tgz#0811d2f8d6f318b9319546cacbb6b99557af2ede"
+  integrity sha512-27msdS5D5t0eFdvl+1xMTX38dWEqQfkcXdMZ8zS1da68VwW4l2Qwf4LGEYchWXu887opcXXcPkOCmllX3LP+2g==
+
 which-module@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/which-module/-/which-module-2.0.0.tgz#d9ef07dce77b9902b8a3a8fa4b31c3e3f7e6e87a"
