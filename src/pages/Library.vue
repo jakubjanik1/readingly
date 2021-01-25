@@ -12,10 +12,15 @@
                 :size="21" 
             />
         </div>
-
         <div class="library__books">
             <BookUploading v-if="bookIsUploading" />
 
+            <ClipLoader
+                class="library__loading"
+                v-show="books.length === 0"
+                color="#333"
+                size="75px"
+            />
             <Book 
                 v-for="book in books" 
                 :src="book" 
@@ -32,6 +37,7 @@ import BookUploading from '@/components/library/BookUploading'
 import Book from '@/components/library/Book'
 import ToggleRemove from 'vue-material-design-icons/Delete'
 import { mapActions, mapState } from 'vuex'
+import ClipLoader from 'vue-spinner/src/ClipLoader'
 
 export default {
     name: 'Library',
@@ -39,7 +45,8 @@ export default {
         AddBook,
         Book,
         BookUploading,
-        ToggleRemove
+        ToggleRemove,
+        ClipLoader
     },
     data() {
         return {
@@ -64,6 +71,13 @@ export default {
         font: {
             size: 1.1em;
             weight: 500;
+        }
+
+        &__loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         &__toggle-remove {
