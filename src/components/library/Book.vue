@@ -65,6 +65,7 @@ export default {
         cursor: pointer;
         position: relative;
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        border-radius: 4px;
 
         &__remove {
             color: #fff;
@@ -80,7 +81,7 @@ export default {
         &__thumbnail {
             width: 120px;
             height: 100%;
-            border-radius: 4px;
+            border-radius: 4px; 
         }
     }
 </style>
