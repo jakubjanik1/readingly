@@ -17,6 +17,7 @@ import { mapState, mapMutations } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
 import $ from 'jquery'
 import when from 'when-key-events'
+import isMobile from 'ismobilejs'
 
 export default {
     name: 'EpubViewer',
@@ -120,7 +121,7 @@ export default {
                 content.documentElement.querySelector('#epubjs-inserted-css-').innerHTML = `
                     * { 
                         font-family: ${this.font}, serif !important;
-                        cursor: pointer;
+                        ${!isMobile(window.navigator).any && 'cursor: pointer;'}
                     }
                 `
             })

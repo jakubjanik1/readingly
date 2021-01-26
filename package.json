@@ -14,6 +14,7 @@
     "epubjs": "^0.3.85",
     "firebase": "^7.2.1",
     "image-blob-reduce": "^2.2.2",
+    "ismobilejs": "^1.1.1",
     "jquery": "^3.5.0",
     "lodash": "^4.17.15",
     "uuidv4": "^6.0.0",
