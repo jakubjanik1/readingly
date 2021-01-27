@@ -15,7 +15,6 @@
 import { Book } from 'epubjs'
 import { mapState, mapMutations } from 'vuex'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
-import $ from 'jquery'
 import when from 'when-key-events'
 import isMobile from 'ismobilejs'
 
@@ -86,9 +85,9 @@ export default {
         },
         onRendered() {
             this.loading = false
-            
+
             this.rendition.getContents().forEach(content => {
-                $(content.content).click((e => {
+                content.content.onclick = () => {
                     const selection = content.window.getSelection()
                 
                     selection.modify('extend', 'backward', 'word')       
@@ -97,13 +96,11 @@ export default {
                     selection.modify('extend', 'forward', 'word')
                     const a = selection.toString()
                     selection.modify('move','forward','character')
-                                        
-                    if (e.timeStamp != previousTimeStamp && b + a) {
+                    
+                    if (/\w+/.test(b + a)) {
                         this.$emit('text-select', b + a)
                     }
-
-                    let previousTimeStamp = e.timeStamp
-                }).bind(this))
+                }
             })
 
             this.changeFont(this.font)
