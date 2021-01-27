@@ -11,8 +11,7 @@
             color="var(--theme-text-color)"
             size="50px"
         />
-        <div v-else-if="isEmpty(meanings)">We cannot find translations of this word</div>
-        <div class="dictionary__meanings" v-else>
+        <div class="dictionary__meanings" v-else-if="meanings">
             <ul v-for="(meaning, i) in meanings" :key="i">
                 <li class="dictionary__part-of-speech">{{ meaning.partOfSpeech }}</li>
                 <ol>
@@ -45,7 +44,6 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash'
 import SpeakIcon from 'vue-material-design-icons/VolumeHigh'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
 import { getDictionary, translate } from '@/services/dictionary.service.js'
@@ -61,14 +59,13 @@ export default {
     },
     data() {
         return {
-            meanings: {},
+            meanings: null,
             translations: null,
             audio: null,
             loading: false
         }
     },
     methods: { 
-        isEmpty,
         async loadDictionary() {
           this.loading = true
 

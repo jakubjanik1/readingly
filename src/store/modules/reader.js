@@ -1,5 +1,3 @@
-import { inRange } from 'lodash';
-
 export default {
     namespaced: true,
 
@@ -13,7 +11,7 @@ export default {
 
     mutations: {
         setFontSize(state, newFontSize) {
-            if (inRange(newFontSize, 100, 200 + 1)) {
+            if (newFontSize >= 100 && newFontSize <= 200 + 1) {
                 state.fontSize = newFontSize
             }
         },
@@ -26,13 +24,13 @@ export default {
         },
 
         setBrightness(state, newBrightness) {
-            if (inRange(newBrightness, 20, 100 + 1)) {
+            if (newBrightness >= 20 && newBrightness <= 100 + 1) {
                 state.brightness = newBrightness
             }
         },
 
         setProgress(state, newProgress) {
-            if (inRange(newProgress, 0, 100 + 1)) {
+            if (newProgress >= 0 && newProgress <= 100 + 1) {
                 state.progress = newProgress
             }
         },
