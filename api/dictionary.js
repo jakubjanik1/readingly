@@ -1,7 +1,7 @@
 const { get } = require('axios')
 const { JSDOM } = require('jsdom')
 
-export default async (req, res) => {
+module.exports = async (req, res) => {
     let { word } = req.query   
     word = word.replace(/[^A-Za-z- ']/g, '')
     word = encodeURI(word)
