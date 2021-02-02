@@ -2,11 +2,11 @@ import { translate, getDictionary } from '@/services/dictionary.service'
 import nock from 'nock'
 import 'isomorphic-fetch'
 
-describe('Dictionary Service', () => {  
-    it('translate() should work', async () => {
-        nock.disableNetConnect()
-        nock.enableNetConnect('localhost')
+nock.disableNetConnect()
+nock.enableNetConnect('localhost')
 
+describe('Dictionary Service', () => {  
+    it('translate() should work', async () => {   
         const response = {
             'humongous {adj.}': ['wielgachny', 'ogromniasty', 'olbrzymi', 'kolosalny', 'potężny']
         }
@@ -25,35 +25,29 @@ describe('Dictionary Service', () => {
     })
 
     it('getDictionary() should work', async () => {
-      const response = [{
-          word: 'humongous',
-          phonetics: [{
-            text: '/hjuˈməŋɡəs/',
-            audio: 'https://lex-audio.useremarkable.com/mp3/humongous_us_1.mp3'
-          }],
-          meanings: [{
-              partOfSpeech: 'adjective',
-              definitions: [{
-                  definition: 'Huge; enormous.',
-                  synonyms: ['large', 'sizeable']
-              }]
-          }]
-      }]
+        const response = {
+            audio: 'https://www.collinsdictionary.com/sounds/hwd_sounds/humongous.mp3',
+            meanings: [{
+                partOfSpeech: 'adjective',
+                definition: 'If you describe something or someone as humongous, you are emphasizing that they are very large or important.',
+                example: ' We had a humongous row just because she left.',
+                synonyms: ''
+            }]
+        }
 
-      const request = nock('https://api.dictionaryapi.dev')
-          .get('/api/v2/entries/en/humongous')
-          .reply(200, response)
+        const request = nock('http://localhost/api')
+            .get('/dictionary?word=humongous')
+            .reply(200, response)
           
-      const {audio, meanings} = await getDictionary('humongous')
+        const {audio, meanings} = await getDictionary('humongous')
           
-      expect(request.isDone()).toBe(true)
-      expect(audio).toBe('https://lex-audio.useremarkable.com/mp3/humongous_us_1.mp3')
-      expect(meanings).toEqual([{
-        partOfSpeech: 'adjective',
-        definitions: [{
-            definition: 'Huge; enormous.',
-            synonyms: ['large', 'sizeable']
-        }]
-    }])
+        expect(request.isDone()).toBe(true)
+        expect(audio).toBe('https://www.collinsdictionary.com/sounds/hwd_sounds/humongous.mp3')
+        expect(meanings).toEqual([{
+            partOfSpeech: 'adjective',
+            definition: 'If you describe something or someone as humongous, you are emphasizing that they are very large or important.',
+            example: ' We had a humongous row just because she left.',
+            synonyms: ''
+        }])
   })
 })

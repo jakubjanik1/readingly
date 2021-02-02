@@ -11,35 +11,21 @@
             color="var(--theme-text-color)"
             size="50px"
         />
-        <div class="dictionary__meanings" v-else-if="meanings">
-            <ul v-for="(meaning, i) in meanings" :key="i">
-                <li class="dictionary__part-of-speech">{{ meaning.partOfSpeech }}</li>
-                <ol>
-                  <li v-for="(definition, i) in meaning.definitions" :key="i">
-                      <div class="dictionary__definition">{{ definition.definition }}</div>
-                      <div class="dictionary__example" v-if="definition.example">{{ definition.example }}</div>
-                      <div class="dictionary__words" v-if="Array.isArray(definition.synonyms)">
-                          <div v-for="(synonym, i) in definition.synonyms.slice(0, 10)" :key="i">
-                              {{ synonym }}
-                          </div>
-                      </div>
-                  </li>
-                </ol>
-            </ul>
-        </div>
+        <ul class="dictionary__meanings" v-else-if="meanings">
+            <li v-for="(meaning, i) in meanings" :key="i">
+                <div class="dictionary__part-of-speech">{{ meaning.partOfSpeech }}</div>
+                <div class="dictionary__definition">{{ meaning.definition }}</div>
+                <div class="dictionary__example">{{ meaning.example }}</div>
+                <div class="dictionary__synonyms">{{ meaning.synonyms }}</div>
+            </li>
+        </ul>
 
-        <div class="dictionary__translations" v-if="translations">
-            <ul v-for="([word, translation]) in Object.entries(translations)" :key="word">
-                <li>
-                    <div class="dictionary__part-of-speech">{{ word }}</div>
-                    <div class="dictionary__words" v-if="Array.isArray(translation)">
-                        <div v-for="(word, i) in translation.slice(0, 10)" :key="i">
-                            {{ word }}
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+        <ul class="dictionary__translations" v-if="translations">
+            <li v-for="([word, translation]) in Object.entries(translations)" :key="word">
+                <div class="dictionary__part-of-speech">{{ word }}</div>
+                <div class="dictionary__synonyms">{translation}</div>
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -69,7 +55,7 @@ export default {
         async loadDictionary() {
           this.loading = true
 
-          const {meanings, audio} = await getDictionary(this.word)
+          const { meanings, audio } = await getDictionary(this.word)
           this.meanings = meanings
           this.audio = audio
 
@@ -102,14 +88,15 @@ export default {
         color: var(--theme-text-color);
 
         &__loading {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         &__meanings {
-          text-align: justify;
+            text-align: justify;
+            padding-left: 1em;
         }
 
         &__word {
@@ -132,54 +119,30 @@ export default {
         }
 
         &__part-of-speech {
-          font-size: 0.8em;
+            font-size: 0.8em;
+            margin-bottom: 0.5em;
         }
 
         &__definition {
             font-weight: 600;
-            margin-bottom: 0.75em;  
-            font-size: 0.9em;
+            font-size: 0.85em;
+            margin-bottom: 0.5em;
         }
 
         &__example {
-          font-size: 0.75rem;
+            font-size: 0.75rem;
+            margin-bottom: 0.5em;
         }
 
-        &__words {
-          display: flex;
-          gap: 0.5em;
-          overflow: auto;
-          margin-top: 0.75em;
-
-          div {
-            padding: 0.25em 0.5em;
-            border-radius: 0.25em;
-            white-space: nowrap;
-            border: 2px solid #dedede;
-            border-radius: 1.2em;
+        &__synonyms {
             font-size: 0.8em;
-          }
+            color: #f7b337;
+            font-weight: 600;
+            margin-bottom: 1em;
         }
 
         &__translations {
-          padding-top: 3em;
-        }
-
-        ol {
-          display: grid;
-          grid-template-columns: 100%;
-          gap: 1em;
-          padding: 0.75em 0.5em 0 0.75em;
-          margin: 0;
-        }
-
-        ul {
-          padding: 1.25em 0.5em 0 0.75em;
-          margin: 0;
-        }
-
-        li::marker {
-          font-weight: 600;
+            padding-top: 3em;
         }
     }
 </style>

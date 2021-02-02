@@ -7,11 +7,7 @@ export async function translate(word) {
 }
 
 export async function getDictionary(word) {
-  const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
-  const results = await response.json()
+    const { data } = await get(`/api/dictionary?word=${word}`)
 
-  const meanings = results.flatMap(result => result.meanings)
-  const audio = results[0].phonetics[0].audio
-
-  return {meanings, audio}
+    return data
 }
