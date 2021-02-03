@@ -23,7 +23,7 @@
         <ul class="dictionary__translations" v-if="translations">
             <li v-for="([word, translation]) in Object.entries(translations)" :key="word">
                 <div class="dictionary__part-of-speech">{{ word }}</div>
-                <div class="dictionary__synonyms">{translation}</div>
+                <div class="dictionary__synonyms">{{ translation }}</div>
             </li>
         </ul>
     </div>

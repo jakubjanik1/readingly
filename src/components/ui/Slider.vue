@@ -12,6 +12,7 @@
             width="100%"
             :dotStyle="{ border: '2px solid #f7b337', background: 'var(--theme-bg-color)' }"
             @change="$emit('change', $event)"
+            @drag-end="$emit('drag-end')"
         />
 
         <slot class="slider__label" name="right-label" />

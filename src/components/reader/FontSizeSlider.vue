@@ -3,7 +3,8 @@
     :value="fontSize" 
     :min="100"
     :max="200" 
-    @change="setFontSize($event)"
+    @change="newFontSize = $event"
+    @drag-end="setFontSize(newFontSize)"
   >
     <FontDecreaseIcon slot="left-label" />
     <FontIncreaseIcon slot="right-label" />
@@ -18,6 +19,11 @@ import FontDecreaseIcon from 'vue-material-design-icons/FormatFontSizeDecrease'
 
 export default {
     name: 'FontSizeSlider',
+    data() {
+      return {
+        newFontSize: this.fontSize
+      }
+    },
     components: {
       Slider,
       FontIncreaseIcon,

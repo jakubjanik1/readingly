@@ -1,7 +1,7 @@
 const { get } = require('axios')
 const cheerio = require('cheerio')
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
     let { word } = req.query   
     word = word.replace(/[^A-Za-z- ']/g, '')
     word = encodeURI(word)
