@@ -19,7 +19,7 @@ export default async (req, res) => {
     const audioElement = dom.window.document.querySelector('a.audio')
     if (audioElement) {
         const audioPath = audioElement.dataset.audio
-        audio = `https://audio.vocab.com/1.0/us/${audioPath}`
+        audio = `https://audio.vocab.com/1.0/us/${audioPath}.mp3`
     }
 
     const meanings = Array.from(definitions.querySelectorAll('ol > li')).map(el => {
