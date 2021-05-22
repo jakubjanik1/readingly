@@ -7,7 +7,6 @@
 
             <ToggleRemove 
                 class="library__toggle-remove"
-                fillColor="#333"
                 @click="removeMode = !removeMode"
                 :size="21" 
             />
@@ -18,7 +17,7 @@
             <ClipLoader
                 class="library__loading"
                 v-show="books.length === 0"
-                color="#333"
+                color="var(--theme-text-color)"
                 size="75px"
             />
             <Book 
@@ -63,7 +62,7 @@ export default {
 
 <style lang="scss" scoped>
     .library {
-        background: #f9f9f9;
+        background: var(--theme-bg-color);
         min-height: 100vh;
         height: 100%;
         box-sizing: border-box;
@@ -89,7 +88,7 @@ export default {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: #333;
+            color: var(--theme-text-color);
         }
 
         &__books {

@@ -1,5 +1,5 @@
 <template>
-    <Wrapper class="reader" :brightness="brightness" :class="theme">
+    <Wrapper class="reader" :brightness="brightness">
         <div class="reader__toolbar">
             <ReturnToLibrary />
             <OpenSettings @click="openSettings" />
@@ -48,7 +48,7 @@ export default {
             panel: null
         }
     },
-    computed: mapState('reader', ['brightness', 'theme']),
+    computed: mapState('reader', ['brightness']),
     methods: {
         openDictionary(word) {
             this.panel = this.showPanel('Dictionary', { word })
@@ -83,21 +83,6 @@ export default {
 </style>
 
 <style lang="scss">
-    .white {
-      --theme-bg-color: #f9f9f9;
-      --theme-text-color: #333;
-    }
-
-    .black {
-      --theme-bg-color: #333;
-      --theme-text-color: #e7e7e7;
-    }
-
-    .sepia {
-      --theme-bg-color: #fbf0d9;
-      --theme-text-color: #5f4b32;
-    }
-
     .slideout-panel .slideout-wrapper .slideout {
         display: flex;
         justify-content: center;

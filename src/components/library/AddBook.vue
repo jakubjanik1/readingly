@@ -6,7 +6,7 @@
             ref="input"
             @change="handleFileChange"
         >
-        <AddIcon class="add-book__icon" fillColor="#333" />
+        <AddIcon class="add-book__icon" />
     </div>
 </template>
 
