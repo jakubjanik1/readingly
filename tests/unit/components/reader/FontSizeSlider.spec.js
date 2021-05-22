@@ -36,6 +36,7 @@ describe('<FontSizeSlider />', () => {
         const NEW_FONT_SIZE = 125
 
         slider.vm.$emit('change', NEW_FONT_SIZE)
+        slider.vm.$emit('drag-end');
 
         expect(reader.mutations.setFontSize).toHaveBeenCalled()
         expect(reader.mutations.setFontSize.mock.calls[0][1]).toEqual(NEW_FONT_SIZE)

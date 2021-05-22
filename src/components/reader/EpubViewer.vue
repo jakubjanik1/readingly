@@ -60,7 +60,6 @@ export default {
         await this.book.ready
         this.book.locations.generate(1000)
 
-        this.rendition.on('selected', this.onSelected)
         this.rendition.on('relocated', this.onRelocated)
         this.rendition.on('rendered', this.onRendered)
 
@@ -72,11 +71,6 @@ export default {
     },
     methods: {
         ...mapMutations('reader', ['setProgress']),
-        async onSelected(cfiRange) {
-            const range = await this.book.getRange(cfiRange)
-            
-            this.$emit('text-select', range.toString())
-        },
         onRelocated(location) {
             localStorage.setItem(this.src, location.start.cfi)
 

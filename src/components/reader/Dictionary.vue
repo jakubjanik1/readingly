@@ -142,6 +142,7 @@ export default {
         }
 
         &__translations {
+            padding-left: 1em;
             padding-top: 3em;
         }
     }
